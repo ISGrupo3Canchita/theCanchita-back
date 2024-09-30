@@ -66,7 +66,8 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- JWT dependencies son dependencia que necesita el sprint boot para trabajar con JWT-->	
+		<!-- JWT dependencies son dependencia que necesita el sprint boot para trabajar con JWT-->
+		
 		<dependency>
     		<groupId>io.jsonwebtoken</groupId>
     		<artifactId>jjwt-api</artifactId>
