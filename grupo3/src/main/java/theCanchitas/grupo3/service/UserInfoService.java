@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import theCanchitas.grupo3.model.UserInfo;
 import theCanchitas.grupo3.repository.UserInfoRepository;
+import theCanchitas.grupo3.security.UserInfoDetails;
 
 @Service
 public class UserInfoService implements UserDetailsService {
