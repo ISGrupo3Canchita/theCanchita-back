@@ -1,6 +1,6 @@
 package theCanchitas.grupo3.model;
 
-import java.util.List;
+
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -15,8 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Usuarios", schema = "canchitaBS", indexes = {
-		@Index(name = "index_userInfo_email", columnList = "email_Usuario", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
-
+@Index(name = "index_userInfo_email", columnList = "email_Usuario", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
 public class Usuarios {
 
 	@Id
@@ -29,6 +28,9 @@ public class Usuarios {
 	private Integer cantidad_Reserva;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarios", cascade = CascadeType.ALL)	
+	private Set<UsuarioRoles> usuarioRoles;
+	
+	
 	
 	public int getId_Usuario() {
 		return id_Usuario;

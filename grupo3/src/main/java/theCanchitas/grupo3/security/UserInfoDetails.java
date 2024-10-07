@@ -22,7 +22,7 @@ public class UserInfoDetails implements UserDetails {
     public UserInfoDetails(Usuarios userInfo) {
     	this.username = userInfo.getEmail_Usuario(); // Assuming 'email' is used as 'username'
         this.password = userInfo.getContraseña_Usuario();
-        this.authorities = List.of(userInfo.getRol_Usuario())
+        this.authorities = List.of(userInfo.getRol_Usuario().split(","))
                 .stream()
                 .map(x -> x.trim())//saca espacion adelante y atras
                 .map(SimpleGrantedAuthority::new)

@@ -11,22 +11,14 @@ import jakarta.persistence.Table;
 @Table(name="UsuarioRoles", schema="canchitaBS")
 public class UsuarioRoles {
 	
-	@Id
-	private Integer id_Usuario;
-	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_Usuario")
     private Usuarios usuarios;
 	
 	
-	public Integer getId_Usuario() {
-		return id_Usuario;
-	}
-
-
-	public void setId_Usuario(Integer id_Usuario) {
-		this.id_Usuario = id_Usuario;
-	}
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_Rol")
+    private Rol Rol;
 
 
 	public Usuarios getUsuarios() {
@@ -49,9 +41,7 @@ public class UsuarioRoles {
 	}
 
 
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_Rol")
-    private Rol Rol;
+	
 	
 	
 
