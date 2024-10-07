@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import theCanchitas.grupo3.model.UserInfo;
+import theCanchitas.grupo3.model.Usuarios;
 
 public class UserInfoDetails implements UserDetails {
 	
@@ -19,10 +19,10 @@ public class UserInfoDetails implements UserDetails {
     private List<GrantedAuthority> authorities;
     
     
-    public UserInfoDetails(UserInfo userInfo) {
-    	this.username = userInfo.getEmail(); // Assuming 'email' is used as 'username'
-        this.password = userInfo.getPassword();
-        this.authorities = List.of(userInfo.getRoles().split(","))
+    public UserInfoDetails(Usuarios userInfo) {
+    	this.username = userInfo.getEmail_Usuario(); // Assuming 'email' is used as 'username'
+        this.password = userInfo.getContraseña_Usuario();
+        this.authorities = List.of(userInfo.getRol_Usuario())
                 .stream()
                 .map(x -> x.trim())//saca espacion adelante y atras
                 .map(SimpleGrantedAuthority::new)
