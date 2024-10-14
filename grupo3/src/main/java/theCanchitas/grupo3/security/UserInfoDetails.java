@@ -20,13 +20,13 @@ public class UserInfoDetails implements UserDetails {
     
     
     public UserInfoDetails(Usuarios userInfo) {
-    	this.username = userInfo.getEmail_Usuario(); // Assuming 'email' is used as 'username'
+    	this.username = userInfo.getEmail(); // Assuming 'email' is used as 'username'
         this.password = userInfo.getContraseña_Usuario();
-        this.authorities = List.of(userInfo.getRol_Usuario().split(","))
+        this.authorities = userInfo.getUsuarioRoles()
                 .stream()
-                .map(x -> x.trim())//saca espacion adelante y atras
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+                .map(x -> x.getRol().getNombre())
+               .map(SimpleGrantedAuthority::new)
+               .collect(Collectors.toList());
     }
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

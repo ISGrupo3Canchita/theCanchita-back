@@ -15,14 +15,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Usuarios", schema = "canchitaBS", indexes = {
-@Index(name = "index_userInfo_email", columnList = "email_Usuario", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
+@Index(name = "index_userInfo_email", columnList = "email", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
 public class Usuarios {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_Usuario;
 	private String nombre_Usuario;
-	private String email_Usuario;
+	private String email;
 	private String contraseña_Usuario;
 	private Integer telefono_Usuario;
 	private Integer cantidad_Reserva;
@@ -30,8 +30,16 @@ public class Usuarios {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarios", cascade = CascadeType.ALL)	
 	private Set<UsuarioRoles> usuarioRoles;
 	
+
 	
 	
+	
+	public Set<UsuarioRoles> getUsuarioRoles() {
+		return usuarioRoles;
+	}
+	public void setUsuarioRoles(Set<UsuarioRoles> usuarioRoles) {
+		this.usuarioRoles = usuarioRoles;
+	}
 	public int getId_Usuario() {
 		return id_Usuario;
 	}
@@ -44,11 +52,11 @@ public class Usuarios {
 	public void setNombre_Usuario(String nombre_Usuario) {
 		this.nombre_Usuario = nombre_Usuario;
 	}
-	public String getEmail_Usuario() {
-		return email_Usuario;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmail_Usuario(String email_Usuario) {
-		this.email_Usuario = email_Usuario;
+	public void setEmail(String email_Usuario) {
+		this.email = email_Usuario;
 	}
 	public String getContraseña_Usuario() {
 		return contraseña_Usuario;
