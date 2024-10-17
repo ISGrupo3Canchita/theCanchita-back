@@ -32,7 +32,7 @@ public class UserController {
 	
 	@GetMapping("/welcome")
     public String welcome() {
-        return "Welcome this endpoint is not secure";
+        return "The Canchita futbol club";
     }
 
     @PostMapping("/addNewUser")
