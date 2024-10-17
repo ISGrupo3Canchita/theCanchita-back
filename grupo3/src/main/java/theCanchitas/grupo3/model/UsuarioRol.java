@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="UsuarioRoles", schema="canchitaBS")
-public class UsuarioRoles {
+public class UsuarioRol {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

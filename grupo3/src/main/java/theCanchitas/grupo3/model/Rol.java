@@ -22,7 +22,7 @@ public class Rol {
 	private String descripcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = CascadeType.ALL)
-    private Set<UsuarioRoles> usuarioRoles;
+    private Set<UsuarioRol> usuarioRoles;
 
 	
 	public Integer getId_Rol() {
@@ -49,11 +49,11 @@ public class Rol {
 		this.descripcion = descripcion;
 	}
 
-	public Set<UsuarioRoles> getUsuarioRoles() {
+	public Set<UsuarioRol> getUsuarioRoles() {
 		return usuarioRoles;
 	}
 
-	public void setUsuarioRoles(Set<UsuarioRoles> usuarioRoles) {
+	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
 		this.usuarioRoles = usuarioRoles;
 	}
 
