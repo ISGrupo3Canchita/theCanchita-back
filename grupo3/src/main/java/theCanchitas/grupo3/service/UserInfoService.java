@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import theCanchitas.grupo3.model.Usuarios;
+import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.repository.UserInfoRepository;
 import theCanchitas.grupo3.security.UserInfoDetails;
 
@@ -24,14 +24,14 @@ public class UserInfoService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Usuarios> userDetail = repository.findByEmail(username); // Assuming 'email' is used as username
+		Optional<Usuario> userDetail = repository.findByEmail(username); // Assuming 'email' is used as username
 
         // Converting UserInfo to UserDetails
         return userDetail.map(UserInfoDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 	}
 	
-	public String addUser(Usuarios userInfo) {
+	public String addUser(Usuario userInfo) {
         // Encode password before saving the user
         userInfo.setContraseña_Usuario(encoder.encode(userInfo.getContraseña_Usuario()));
         repository.save(userInfo);

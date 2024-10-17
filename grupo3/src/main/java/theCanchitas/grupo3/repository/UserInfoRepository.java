@@ -5,9 +5,9 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import theCanchitas.grupo3.model.Usuarios;
+import theCanchitas.grupo3.model.Usuario;
 	
 @Repository
-public interface UserInfoRepository extends JpaRepository<Usuarios,Integer>{
-	Optional<Usuarios> findByEmail(String email);
+public interface UserInfoRepository extends JpaRepository<Usuario,Integer>{
+	Optional<Usuario> findByEmail(String email);
 }

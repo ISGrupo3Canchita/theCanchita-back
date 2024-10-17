@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Usuarios", schema = "canchitaBS", indexes = {
 @Index(name = "index_userInfo_email", columnList = "email", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
-public class Usuarios {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

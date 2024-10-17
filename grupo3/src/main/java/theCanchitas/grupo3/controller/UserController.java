@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import theCanchitas.grupo3.model.Usuarios;
+import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.request.AuthRequest;
 import theCanchitas.grupo3.service.JwtService;
 import theCanchitas.grupo3.service.UserInfoService;
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/addNewUser")
-    public String addNewUser(@RequestBody Usuarios userInfo) {
+    public String addNewUser(@RequestBody Usuario userInfo) {
         return service.addUser(userInfo);
     }
 

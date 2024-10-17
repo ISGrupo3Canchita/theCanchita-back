@@ -29,7 +29,7 @@ public class UsuarioRoles {
 
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_Usuario")
-    private Usuarios usuarios;
+    private Usuario usuarios;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -37,12 +37,12 @@ public class UsuarioRoles {
     private Rol rol;
 
 
-	public Usuarios getUsuarios() {
+	public Usuario getUsuarios() {
 		return usuarios;
 	}
 
 
-	public void setUsuarios(Usuarios usuarios) {
+	public void setUsuarios(Usuario usuarios) {
 		this.usuarios = usuarios;
 	}
 
