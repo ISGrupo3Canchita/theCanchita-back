@@ -2,34 +2,31 @@ package theCanchitas.grupo3.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="UsuarioRoles", schema="canchitaBS")
+@Table(name="usuarioRol", schema="canchitabs")
 public class UsuarioRol {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_UsuarioRoles;
+	private String id;
 	
-	public Integer getId_UsuarioRoles() {
-		return id_UsuarioRoles;
+	public String getId() {
+		return id;
 	}
 
 
-	public void setId_UsuarioRoles(Integer id_UsuarioRoles) {
-		this.id_UsuarioRoles = id_UsuarioRoles;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_Usuario")
-    private Usuario usuarios;
+    private Usuario usuario;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -38,12 +35,12 @@ public class UsuarioRol {
 
 
 	public Usuario getUsuarios() {
-		return usuarios;
+		return usuario;
 	}
 
 
 	public void setUsuarios(Usuario usuarios) {
-		this.usuarios = usuarios;
+		this.usuario = usuarios;
 	}
 
 
