@@ -25,17 +25,17 @@ public class Usuario {
 	private Integer cantidad_Reserva;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)	
-	private Set<UsuarioRol> usuarioRol;
+	private Set<UsuarioRol> usuariorol;
 	
 
 	
 	
 	
 	public Set<UsuarioRol> getUsuarioRoles() {
-		return usuarioRol;
+		return usuariorol;
 	}
 	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-		this.usuarioRol = usuarioRoles;
+		this.usuariorol = usuarioRoles;
 	}
 	public String getId() {
 		return this.id;

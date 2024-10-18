@@ -19,7 +19,7 @@ public class Rol {
 	private String descripcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = CascadeType.ALL)
-    private Set<UsuarioRol> usuarioRol;
+    private Set<UsuarioRol> usuariorol;
 
 	
 	public String getId() {
@@ -47,11 +47,11 @@ public class Rol {
 	}
 
 	public Set<UsuarioRol> getUsuarioRoles() {
-		return usuarioRol;
+		return usuariorol;
 	}
 
 	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-		this.usuarioRol = usuarioRoles;
+		this.usuariorol = usuarioRoles;
 	}
 
 
