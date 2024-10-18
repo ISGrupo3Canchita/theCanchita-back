@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import theCanchitas.grupo3.filter.JwtAuthFilter;
-import theCanchitas.grupo3.service.UserInfoService;
+import theCanchitas.grupo3.service.UsuarioService;
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +30,7 @@ public class SecurityConfig {
 	
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new UserInfoService();
+		return new UsuarioService();
 	}
 	
 	@Bean

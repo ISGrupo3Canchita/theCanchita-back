@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import theCanchitas.grupo3.model.Usuario;
 	
 @Repository
-public interface UserInfoRepository extends JpaRepository<Usuario,String>{
+public interface UsuarioRepository extends JpaRepository<Usuario,String>{
 	Optional<Usuario> findByEmail(String email);
 }

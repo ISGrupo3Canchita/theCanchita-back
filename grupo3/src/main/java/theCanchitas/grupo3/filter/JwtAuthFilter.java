@@ -15,7 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import theCanchitas.grupo3.service.JwtService;
-import theCanchitas.grupo3.service.UserInfoService;
+import theCanchitas.grupo3.service.UsuarioService;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -24,7 +24,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	private JwtService jwtService;
 	
 	@Autowired
-	private UserInfoService userDetailsService;
+	private UsuarioService userDetailsService;
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

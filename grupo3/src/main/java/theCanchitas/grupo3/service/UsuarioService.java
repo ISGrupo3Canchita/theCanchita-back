@@ -11,33 +11,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import theCanchitas.grupo3.model.Usuario;
-import theCanchitas.grupo3.repository.UserInfoRepository;
+import theCanchitas.grupo3.repository.UsuarioRepository;
 import theCanchitas.grupo3.security.UserInfoDetails;
 
 @Service
-public class UserInfoService implements UserDetailsService {
+public class UsuarioService implements UserDetailsService {
 	
 	@Autowired
-	private UserInfoRepository repository;
+	private UsuarioRepository repository;
 	
 	@Autowired
 	private PasswordEncoder encoder;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Usuario> userDetail = repository.findByEmail(username); // Assuming 'email' is used as username
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Optional<Usuario> usuario = repository.findByEmail(email); // Assuming 'email' is used as username
 
         // Converting UserInfo to UserDetails
-        return userDetail.map(UserInfoDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        return usuario.map(UserInfoDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 	}
 	
-	public String addUser(Usuario userInfo) {
+	public String addUser(Usuario usuario) {
         // Encode password before saving the user
-        userInfo.setContraseña_Usuario(encoder.encode(userInfo.getContraseña_Usuario()));
+        usuario.setContraseña_Usuario(encoder.encode(usuario.getContraseña_Usuario()));
         String uuid = UUID.randomUUID().toString();
-        userInfo.setId(uuid);
-        repository.save(userInfo);
+        usuario.setId(uuid);
+        repository.save(usuario);
         return "User Added Successfully";
     }
 	

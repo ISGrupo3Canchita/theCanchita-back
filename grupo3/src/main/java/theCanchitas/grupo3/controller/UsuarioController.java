@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.request.AuthRequest;
 import theCanchitas.grupo3.service.JwtService;
-import theCanchitas.grupo3.service.UserInfoService;
+import theCanchitas.grupo3.service.UsuarioService;
 
 @RestController
 @RequestMapping("/theCanchita")
-public class UserController {
+public class UsuarioController {
 	
 	@Autowired
-	private UserInfoService service;
+	private UsuarioService service;
 	
 	@Autowired
 	private JwtService jwtService;
@@ -37,7 +37,7 @@ public class UserController {
         return "The Canchita futbol club";
     }
 
-    @PostMapping("/addNewUser")
+    @PostMapping("/registrarUsuario")
     public String addNewUser(@RequestBody Usuario userInfo) {
         return service.addUser(userInfo);
     }
