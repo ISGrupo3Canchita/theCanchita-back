@@ -5,32 +5,29 @@ import java.util.Set;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Rol" , schema="canchitaBS")
+@Table(name="rol" , schema="canchitabs")
 public class Rol {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_Rol;
+	private String id;
 	private String nombre;
 	private String descripcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = CascadeType.ALL)
-    private Set<UsuarioRoles> usuarioRoles;
+    private Set<UsuarioRol> usuarioRol;
 
 	
-	public Integer getId_Rol() {
-		return id_Rol;
+	public String getId() {
+		return id;
 	}
 
-	public void setId_Rol(Integer id_Rol) {
-		this.id_Rol = id_Rol;
+	public void setIdl(String id_Rol) {
+		this.id = id_Rol;
 	}
 
 	public String getNombre() {
@@ -49,12 +46,12 @@ public class Rol {
 		this.descripcion = descripcion;
 	}
 
-	public Set<UsuarioRoles> getUsuarioRoles() {
-		return usuarioRoles;
+	public Set<UsuarioRol> getUsuarioRoles() {
+		return usuarioRol;
 	}
 
-	public void setUsuarioRoles(Set<UsuarioRoles> usuarioRoles) {
-		this.usuarioRoles = usuarioRoles;
+	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
+		this.usuarioRol = usuarioRoles;
 	}
 
 

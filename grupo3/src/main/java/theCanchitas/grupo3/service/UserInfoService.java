@@ -1,6 +1,7 @@
 package theCanchitas.grupo3.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,6 +35,8 @@ public class UserInfoService implements UserDetailsService {
 	public String addUser(Usuario userInfo) {
         // Encode password before saving the user
         userInfo.setContraseña_Usuario(encoder.encode(userInfo.getContraseña_Usuario()));
+        String uuid = UUID.randomUUID().toString();
+        userInfo.setId(uuid);
         repository.save(userInfo);
         return "User Added Successfully";
     }
