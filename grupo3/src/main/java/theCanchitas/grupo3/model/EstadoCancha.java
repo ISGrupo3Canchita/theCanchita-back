@@ -13,6 +13,8 @@ public class EstadoCancha {
 	
 	private String nombreEstado;
 	private String descripcion;
+	
+	
 	public String getId() {
 		return id;
 	}
