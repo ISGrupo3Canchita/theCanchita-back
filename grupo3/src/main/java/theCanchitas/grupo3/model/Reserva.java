@@ -19,26 +19,21 @@ import jakarta.persistence.Table;
 public class Reserva {
 	
 	@Id
-	@Column
 	private String id;
-	@Column
-	private String id_Usuario;
-	@Column
-	private String id_Cancha;
-	@Column
-	private String id_Estado_Reserva;
-	@Column
 	private Time inicio_Reserva;
-	@Column
 	private Time fin_Reserva;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="reserva", cascade = CascadeType.ALL)
-	private Set<EstadoReserva> estadoreserva;
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_Usuario")
+	private Usuario Usuario;
+	
+	@ManyToOne( cascade = CascadeType.ALL)
+	@JoinColumn (name = "estado_Reserva")
+	private EstadoReserva estadoreserva;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_Cancha")
 	private Cancha cancha;
-
 	
 	
 
@@ -50,28 +45,14 @@ public class Reserva {
 		this.id = id;
 	}
 
-	public String getId_Usuario() {
-		return id_Usuario;
+
+
+	public Usuario getUsuario() {
+		return Usuario;
 	}
 
-	public void setId_Usuario(String id_Usuario) {
-		this.id_Usuario = id_Usuario;
-	}
-
-	public String getId_Cancha() {
-		return id_Cancha;
-	}
-
-	public void setId_Cancha(String id_Cancha) {
-		this.id_Cancha = id_Cancha;
-	}
-
-	public String getId_Estado_Reserva() {
-		return id_Estado_Reserva;
-	}
-
-	public void setId_Estado_Reserva(String id_Estado_Reserva) {
-		this.id_Estado_Reserva = id_Estado_Reserva;
+	public void setUsuario(Usuario usuario) {
+		Usuario = usuario;
 	}
 
 	public Time getInicio_Reserva() {
@@ -89,12 +70,13 @@ public class Reserva {
 	public void setFin_Reserva(Time fin_Reserva) {
 		this.fin_Reserva = fin_Reserva;
 	}
+	
 
-	public Set<EstadoReserva> getEstadoreserva() {
+	public EstadoReserva getEstadoreserva() {
 		return estadoreserva;
 	}
 
-	public void setEstadoreserva(Set<EstadoReserva> estadoreserva) {
+	public void setEstadoreserva(EstadoReserva estadoreserva) {
 		this.estadoreserva = estadoreserva;
 	}
 

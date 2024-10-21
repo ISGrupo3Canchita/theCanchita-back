@@ -23,7 +23,6 @@ public class UsuarioRol {
 		this.id = id;
 	}
 
-
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_Usuario")
     private Usuario usuario;
