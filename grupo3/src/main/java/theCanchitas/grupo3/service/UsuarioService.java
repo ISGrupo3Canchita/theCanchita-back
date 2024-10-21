@@ -24,7 +24,7 @@ public class UsuarioService implements UserDetailsService {
 	private PasswordEncoder encoder;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserInfoDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<Usuario> usuario = repository.findByEmail(email); // **Asumimos que el username es el Email**
 
         // Converting UserInfo to UserDetails

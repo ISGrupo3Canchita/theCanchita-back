@@ -14,14 +14,24 @@ public class UserInfoDetails implements UserDetails {
 	
 	private static final long serialVersionUID = 1l;
 	
-	private String username; // Changed from 'name' to 'username' for clarity
-    private String password;
+	private String email; // Changed from 'name' to 'username' for clarity
+    private String contraseña;
+    private String nombre;
+    private String id;
+    private Integer telefono;
+    private Integer cantidad_Reserva;
+    
+    
     private List<GrantedAuthority> authorities;
     
     
     public UserInfoDetails(Usuario userInfo) {
-    	this.username = userInfo.getEmail(); // Assuming 'email' is used as 'username'
-        this.password = userInfo.getContraseña_Usuario();
+    	this.email = userInfo.getEmail(); // Assuming 'email' is used as 'username'
+        this.contraseña = userInfo.getContraseña_Usuario();
+        this.nombre = userInfo.getNombre_Usuario();
+        this.id = userInfo.getId();
+        this.telefono = userInfo.getTelefono_Usuario();
+        this.cantidad_Reserva = userInfo.getCantidad_Reserva();
         this.authorities = userInfo.getUsuarioRoles()
                 .stream()
                 .map(x -> x.getRol().getNombre())
@@ -36,14 +46,56 @@ public class UserInfoDetails implements UserDetails {
 	@Override
 	public String getPassword() {
 
-		return password;
+		return contraseña;
 	}
 	@Override
 	public String getUsername() {
 		
-		return username;
+		return email;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getContraseña() {
+		return contraseña;
+	}
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Integer getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+	public Integer getCantidad_Reserva() {
+		return cantidad_Reserva;
+	}
+	public void setCantidad_Reserva(Integer cantidad_Reserva) {
+		this.cantidad_Reserva = cantidad_Reserva;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public void setAuthorities(List<GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
 	@Override
     public boolean isAccountNonExpired() {
         return true; // Implement your logic if you need this
