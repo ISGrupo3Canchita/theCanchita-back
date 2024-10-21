@@ -1,5 +1,6 @@
 package theCanchitas.grupo3.model;
 
+
 import java.sql.Time;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class Reserva {
 	private Time fin_Reserva;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="reserva", cascade = CascadeType.ALL)
-	private Set<estadoReserva> estadoreserva;
+	private Set<EstadoReserva> estadoreserva;
 	
 	@ManyToOne
 	private Set<Cancha> cancha;
