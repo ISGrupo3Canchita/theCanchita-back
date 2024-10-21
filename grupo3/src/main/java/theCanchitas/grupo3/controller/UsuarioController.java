@@ -32,7 +32,7 @@ public class UsuarioController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	@GetMapping("/welcome")
+	@GetMapping("/prueba")
     public String welcome() {
         return "The Canchita futbol club";
     }
