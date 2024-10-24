@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import theCanchitas.grupo3.dto.UsuarioDto;
+import theCanchitas.grupo3.model.Rol;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.request.AuthRequest;
+import theCanchitas.grupo3.security.UserInfoDetails;
 import theCanchitas.grupo3.service.JwtService;
 import theCanchitas.grupo3.service.UsuarioService;
 
@@ -66,10 +69,25 @@ public class UsuarioController {
         }
     }
     
-    @GetMapping("/usuarioPorEmail/{email}")
-    public UserDetails usuarioPorEmail(@PathVariable String email) {
-    	UserDetails usuario =  this.service.loadUserByUsername(email);
+    @GetMapping("/ingreso")
+    public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
+    	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
     	
-    	return usuario;
+    	String token = new String("");
+          
+    	 Authentication authentication = authenticationManager.authenticate(
+    	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
+    	        );
+    	        if (authentication.isAuthenticated()) {
+    	            token = jwtService.generateToken(authRequest.getUsername());
+    	        } else {
+    	            throw new UsernameNotFoundException("Invalid user request!");
+    	        }
+        String usuarioRol = this.service.findRolById(usuario.getId());
+    	
+    	
+    	UsuarioDto usuarioDto = new UsuarioDto(usuario, token, usuarioRol);
+    	
+    	return usuarioDto;
     }	
 }
