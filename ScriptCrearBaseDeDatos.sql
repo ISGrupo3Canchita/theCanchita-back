@@ -64,3 +64,8 @@ CREATE TABLE canchitabs.reserva(
         CONSTRAINT FK_ReservaEstado FOREIGN KEY (id_Estado_Reserva) REFERENCES estadoReserva(id),
         PRIMARY KEY (id)
     );
+
+
+INSERT INTO canchitabs.rol (id, nombre, descripcion) VALUES ('3','Usuario', 'Habilitado a reservar canchas')
+insert into canchitabs.rol(id, nombre, descripcion) values ('2', 'Operador','Habilitada la opcion de aceptar o rechazar una reserva')
+insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador','Habilitada la gestion de la aplicacion')

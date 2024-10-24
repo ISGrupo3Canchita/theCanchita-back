@@ -10,8 +10,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import theCanchitas.grupo3.model.Rol;
 import theCanchitas.grupo3.model.Usuario;
+import theCanchitas.grupo3.model.UsuarioRol;
 import theCanchitas.grupo3.repository.UsuarioRepository;
+import theCanchitas.grupo3.repository.UsuarioRolRepository;
 import theCanchitas.grupo3.security.UserInfoDetails;
 
 @Service
@@ -19,6 +22,9 @@ public class UsuarioService implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired
+	private UsuarioRolRepository usuarioRolRepository;
 	
 	@Autowired
 	private PasswordEncoder encoder;
@@ -40,5 +46,16 @@ public class UsuarioService implements UserDetailsService {
         repository.save(usuario);
         return "User Added Successfully";
     }
+	
+	
+	public String findRolById(String id) {
+		String rol = ((Optional<UsuarioRol>) this.usuarioRolRepository.findById(id)).get().getRol().getNombre();
+		
+		return rol;
+		
+	
+		
+		
+	}
 	
 }

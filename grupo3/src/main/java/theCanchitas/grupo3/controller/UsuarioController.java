@@ -69,27 +69,24 @@ public class UsuarioController {
         }
     }
     
-    @GetMapping("/usuarioPorEmail/{email}")
-    public UsuarioDto usuarioPorEmail(@RequestBody String email) {
-    	UserInfoDetails usuario =  this.service.loadUserByUsername(email);
+    @GetMapping("/ingreso")
+    public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
+    	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
     	
     	String token = new String("");
-    	
-    	Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword())
-            );
-            if (authentication.isAuthenticated()) {
-                token =  jwtService.generateToken(usuario.getUsername());
-            } else {
-                throw new UsernameNotFoundException("Invalid user request!");
-            }
-           
-        //esto es de prueba
-    	Rol rol = new Rol();
-    	rol.setNombre("USUARIO");
+          
+    	 Authentication authentication = authenticationManager.authenticate(
+    	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
+    	        );
+    	        if (authentication.isAuthenticated()) {
+    	            token = jwtService.generateToken(authRequest.getUsername());
+    	        } else {
+    	            throw new UsernameNotFoundException("Invalid user request!");
+    	        }
+        String usuarioRol = this.service.findRolById(usuario.getId());
     	
     	
-    	UsuarioDto usuarioDto = new UsuarioDto(usuario, token, rol);
+    	UsuarioDto usuarioDto = new UsuarioDto(usuario, token, usuarioRol);
     	
     	return usuarioDto;
     }	

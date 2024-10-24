@@ -1,7 +1,5 @@
 package theCanchitas.grupo3.dto;
 
-import theCanchitas.grupo3.model.Rol;
-
 import theCanchitas.grupo3.security.UserInfoDetails;
 
 public class UsuarioDto {
@@ -15,13 +13,13 @@ public class UsuarioDto {
 	private String token;
 	
 	
-	public UsuarioDto(UserInfoDetails usuario, String token, Rol rol) {
+	public UsuarioDto(UserInfoDetails usuario, String token, String rol) {
 		this.nombre = usuario.getNombre();
 		this.email = usuario.getEmail();
 		this.telefono = usuario.getTelefono();
 		this.contraseña_Usuario = usuario.getContraseña();
 		this.cantidad_Reserva = usuario.getCantidad_Reserva();
-		this.rol = rol.getNombre();
+		this.rol = rol;
 		this.token = token;
 	}
 	
