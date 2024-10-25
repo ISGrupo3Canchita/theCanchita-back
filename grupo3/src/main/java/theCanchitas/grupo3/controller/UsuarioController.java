@@ -36,13 +36,13 @@ public class UsuarioController {
         return "The Canchita futbol club";
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/registro")
     public String addNewUser(@RequestBody Usuario usuario) { 	
     	return service.addUser(usuario);
     }
 
     @GetMapping("/user/userProfile")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('Usuario')")
     public String userProfile() {
         return "Welcome to User Profile";
     }
@@ -88,10 +88,7 @@ public class UsuarioController {
     	
     }
     
-    @PostMapping("/registroNuevoUsuario")
-    public String agregaUsuarioNuevo(@RequestBody UsuarioDto usuarioDto) {
-    	return service.agregaUsuarioNuevo(usuarioDto);
-    };
+ 
     
     
 }
