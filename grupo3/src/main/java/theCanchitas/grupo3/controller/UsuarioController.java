@@ -5,17 +5,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import theCanchitas.grupo3.dto.UsuarioDto;
-import theCanchitas.grupo3.model.Rol;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.request.AuthRequest;
 import theCanchitas.grupo3.security.UserInfoDetails;
@@ -40,9 +36,9 @@ public class UsuarioController {
         return "The Canchita futbol club";
     }
 
-    @PostMapping("/registrarUsuario")
-    public String addNewUser(@RequestBody Usuario userInfo) {
-        return service.addUser(userInfo);
+    @PostMapping("/addUser")
+    public String addNewUser(@RequestBody Usuario usuario) { 	
+    	return service.addUser(usuario);
     }
 
     @GetMapping("/user/userProfile")
@@ -69,12 +65,11 @@ public class UsuarioController {
         }
     }
     
-    @GetMapping("/ingreso")
+    @PostMapping("/ingreso")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
-    	
     	String token = new String("");
-          
+    	
     	 Authentication authentication = authenticationManager.authenticate(
     	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
     	        );
@@ -83,11 +78,16 @@ public class UsuarioController {
     	        } else {
     	            throw new UsernameNotFoundException("Invalid user request!");
     	        }
-        String usuarioRol = this.service.findRolById(usuario.getId());
-    	
-    	
-    	UsuarioDto usuarioDto = new UsuarioDto(usuario, token, usuarioRol);
-    	
+        //String usuarioRol = this.service.findRolById(usuario.getId());
+
+    	UsuarioDto usuarioDto = new UsuarioDto(usuario, token);
     	return usuarioDto;
-    }	
+    }
+    
+    @PostMapping("/registroNuevoUsuario")
+    public String agregaUsuarioNuevo(@RequestBody UsuarioDto usuarioDto) {
+    	return service.agregaUsuarioNuevo(usuarioDto);
+    };
+    
+    
 }

@@ -2,15 +2,13 @@ package theCanchitas.grupo3.service;
 
 import java.util.Optional;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import theCanchitas.grupo3.model.Rol;
+import theCanchitas.grupo3.dto.UsuarioDto;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.model.UsuarioRol;
 import theCanchitas.grupo3.repository.UsuarioRepository;
@@ -40,22 +38,29 @@ public class UsuarioService implements UserDetailsService {
 	
 	public String addUser(Usuario usuario) {
         // Encode password before saving the user
-        usuario.setContraseña_Usuario(encoder.encode(usuario.getContraseña_Usuario()));
+        usuario.setContraseñaUsuario(encoder.encode(usuario.getContraseñaUsuario()));
         String uuid = UUID.randomUUID().toString();
         usuario.setId(uuid);
+        usuario.setCantidadReserva(0);
         repository.save(usuario);
-        return "User Added Successfully";
+        return usuario.getNombreUsuario().toString();
     }
-	
 	
 	public String findRolById(String id) {
 		String rol = ((Optional<UsuarioRol>) this.usuarioRolRepository.findById(id)).get().getRol().getNombre();
-		
 		return rol;
-		
+
+	}
 	
-		
-		
+	public String agregaUsuarioNuevo(UsuarioDto usuariodto) {
+		usuariodto.setContraseñaUsuario(encoder.encode(usuariodto.getContraseñaUsuario()));
+		String uuid = UUID.randomUUID().toString();
+		usuariodto.setContraseñaUsuario(uuid);
+		usuariodto.setCantidadReserva(0);
+		/*
+		repository.save(usuariodto);
+		*/
+		return "El Usuario: "+usuariodto.getNombre()+", fue agregado.";
 	}
 	
 }

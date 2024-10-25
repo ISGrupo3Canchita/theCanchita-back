@@ -20,19 +20,19 @@ public class Reserva {
 	
 	@Id
 	private String id;
-	private Time inicio_Reserva;
-	private Time fin_Reserva;
+	private Time inicioReserva;
+	private Time finReserva;
 	
 	@ManyToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_Usuario")
+	@JoinColumn(name = "idUsuario")
 	private Usuario Usuario;
 	
 	@ManyToOne( cascade = CascadeType.ALL)
-	@JoinColumn (name = "estado_Reserva")
+	@JoinColumn (name = "estadoReserva")
 	private EstadoReserva estadoreserva;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_Cancha")
+	@JoinColumn(name = "idCancha")
 	private Cancha cancha;
 	
 	
@@ -45,8 +45,6 @@ public class Reserva {
 		this.id = id;
 	}
 
-
-
 	public Usuario getUsuario() {
 		return Usuario;
 	}
@@ -55,22 +53,21 @@ public class Reserva {
 		Usuario = usuario;
 	}
 
-	public Time getInicio_Reserva() {
-		return inicio_Reserva;
+	public Time getInicioReserva() {
+		return inicioReserva;
 	}
 
-	public void setInicio_Reserva(Time inicio_Reserva) {
-		this.inicio_Reserva = inicio_Reserva;
+	public void setInicioReserva(Time inicioReserva) {
+		this.inicioReserva = inicioReserva;
 	}
 
-	public Time getFin_Reserva() {
-		return fin_Reserva;
+	public Time getFinReserva() {
+		return finReserva;
 	}
 
-	public void setFin_Reserva(Time fin_Reserva) {
-		this.fin_Reserva = fin_Reserva;
+	public void setFinReserva(Time finReserva) {
+		this.finReserva = finReserva;
 	}
-	
 
 	public EstadoReserva getEstadoreserva() {
 		return estadoreserva;
@@ -87,8 +84,6 @@ public class Reserva {
 	public void setCancha(Cancha cancha) {
 		this.cancha = cancha;
 	}
-
-
 	
 	
 	

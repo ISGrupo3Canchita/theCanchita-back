@@ -2,8 +2,6 @@ package theCanchitas.grupo3.model;
 
 
 import java.util.Set;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -13,67 +11,74 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario", schema = "canchitabs", indexes = {
-@Index(name = "index_userInfo_email", columnList = "email", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
+@Index(name = "indexUserInfoEmail", columnList = "email", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
 public class Usuario {
 
 	@Id
 	private String id;
-	private String nombre_Usuario;
+	private String nombreUsuario;
 	private String email;
-	private String contraseña_Usuario;
-	private Integer telefono_Usuario;
-	private Integer cantidad_Reserva;
+	private String contraseñaUsuario;
+	private Integer telefonoUsuario;
+	private Integer cantidadReserva;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")	
 	private Set<UsuarioRol> usuariorol;
-	
 
-	
-	
-	
-	public Set<UsuarioRol> getUsuarioRoles() {
-		return usuariorol;
-	}
-	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-		this.usuariorol = usuarioRoles;
-	}
 	public String getId() {
-		return this.id;
+		return id;
 	}
-	public void setId(String id_Usuario) {
-		this.id = id_Usuario;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getNombre_Usuario() {
-		return nombre_Usuario;
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
-	public void setNombre_Usuario(String nombre_Usuario) {
-		this.nombre_Usuario = nombre_Usuario;
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
+
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email_Usuario) {
-		this.email = email_Usuario;
-	}
-	public String getContraseña_Usuario() {
-		return contraseña_Usuario;
-	}
-	public void setContraseña_Usuario(String contraseña_Usuario) {
-		this.contraseña_Usuario = contraseña_Usuario;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public Integer getTelefono_Usuario() {
-		return telefono_Usuario;
+	public String getContraseñaUsuario() {
+		return contraseñaUsuario;
 	}
-	public void setTelefono_Usuario(Integer telefono_Usuario) {
-		this.telefono_Usuario = telefono_Usuario;
+
+	public void setContraseñaUsuario(String contraseñaUsuario) {
+		this.contraseñaUsuario = contraseñaUsuario;
 	}
-	public Integer getCantidad_Reserva() {
-		return cantidad_Reserva;
+
+	public Integer getTelefonoUsuario() {
+		return telefonoUsuario;
 	}
-	public void setCantidad_Reserva(Integer cantidad_Reserva) {
-		this.cantidad_Reserva = cantidad_Reserva;
+
+	public void setTelefonoUsuario(Integer telefonoUsuario) {
+		this.telefonoUsuario = telefonoUsuario;
+	}
+
+	public Integer getCantidadReserva() {
+		return cantidadReserva;
+	}
+
+	public void setCantidadReserva(Integer cantidadReserva) {
+		this.cantidadReserva = cantidadReserva;
+	}
+
+	public Set<UsuarioRol> getUsuariorol() {
+		return usuariorol;
+	}
+
+	public void setUsuariorol(Set<UsuarioRol> usuariorol) {
+		this.usuariorol = usuariorol;
 	}
 	
-
 }

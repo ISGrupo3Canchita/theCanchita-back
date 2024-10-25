@@ -13,13 +13,13 @@ public class Cancha {
 	
 	@Id
 	private String id;
-	private String nombre_Cancha;
+	private String nombreCancha;
 	private String direccion;
 	private String horario;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_Estado_Cancha")
+	@JoinColumn(name = "idEstadoCancha")
 	private EstadoCancha estadoCancha;
 
 
@@ -27,50 +27,41 @@ public class Cancha {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
-	public String getNombre_Cancha() {
-		return nombre_Cancha;
+	public String getNombreCancha() {
+		return nombreCancha;
 	}
 
-
-	public void setNombre_Cancha(String nombre_Cancha) {
-		this.nombre_Cancha = nombre_Cancha;
+	public void setNombreCancha(String nombreCancha) {
+		this.nombreCancha = nombreCancha;
 	}
-
 
 	public String getDireccion() {
 		return direccion;
 	}
 
-
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
 
 	public String getHorario() {
 		return horario;
 	}
 
-
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
-
 
 	public EstadoCancha getEstadoCancha() {
 		return estadoCancha;
 	}
 
-
 	public void setEstadoCancha(EstadoCancha estadoCancha) {
 		this.estadoCancha = estadoCancha;
 	}
 	
-
+	
 }
