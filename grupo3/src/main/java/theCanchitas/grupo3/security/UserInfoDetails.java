@@ -27,12 +27,12 @@ public class UserInfoDetails implements UserDetails {
     
     public UserInfoDetails(Usuario userInfo) {
     	this.email = userInfo.getEmail(); // Assuming 'email' is used as 'username'
-        this.contraseña = userInfo.getContraseña_Usuario();
-        this.nombre = userInfo.getNombre_Usuario();
+        this.contraseña = userInfo.getContraseñaUsuario();
+        this.nombre = userInfo.getNombreUsuario();
         this.id = userInfo.getId();
-        this.telefono = userInfo.getTelefono_Usuario();
-        this.cantidad_Reserva = userInfo.getCantidad_Reserva();
-        this.authorities = userInfo.getUsuarioRoles()
+        this.telefono = userInfo.getTelefonoUsuario();
+        this.cantidad_Reserva = userInfo.getCantidadReserva();
+        this.authorities = userInfo.getUsuariorol()
                 .stream()
                 .map(x -> x.getRol().getNombre())
                .map(SimpleGrantedAuthority::new)

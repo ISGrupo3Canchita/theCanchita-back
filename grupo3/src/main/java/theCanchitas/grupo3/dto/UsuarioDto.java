@@ -7,19 +7,18 @@ public class UsuarioDto {
 	private String nombre;
 	private String email;
 	private Integer telefono;
-	private String contraseña_Usuario;
-	private Integer cantidad_Reserva;
+	private String contraseñaUsuario;
+	private Integer cantidadReserva;
 	private String rol;
 	private String token;
 	
 	
-	public UsuarioDto(UserInfoDetails usuario, String token, String rol) {
+	public UsuarioDto(UserInfoDetails usuario, String token) {
 		this.nombre = usuario.getNombre();
 		this.email = usuario.getEmail();
 		this.telefono = usuario.getTelefono();
-		this.contraseña_Usuario = usuario.getContraseña();
-		this.cantidad_Reserva = usuario.getCantidad_Reserva();
-		this.rol = rol;
+		this.contraseñaUsuario = usuario.getContraseña();
+		this.cantidadReserva = usuario.getCantidad_Reserva();
 		this.token = token;
 	}
 	
@@ -49,17 +48,17 @@ public class UsuarioDto {
 	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
-	public String getContraseña_Usuario() {
-		return contraseña_Usuario;
+	public String getContraseñaUsuario() {
+		return contraseñaUsuario;
 	}
-	public void setContraseña_Usuario(String contraseña_Usuario) {
-		this.contraseña_Usuario = contraseña_Usuario;
+	public void setContraseñaUsuario(String contraseñaUsuario) {
+		this.contraseñaUsuario = contraseñaUsuario;
 	}
-	public Integer getCantidad_Reserva() {
-		return cantidad_Reserva;
+	public Integer getCantidadReserva() {
+		return cantidadReserva;
 	}
-	public void setCantidad_Reserva(Integer cantidad_Reserva) {
-		this.cantidad_Reserva = cantidad_Reserva;
+	public void setCantidadReserva(Integer cantidadReserva) {
+		this.cantidadReserva = cantidadReserva;
 	}
 	public String getToken() {
 		return token;

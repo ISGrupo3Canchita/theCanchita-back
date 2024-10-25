@@ -24,12 +24,12 @@ public class UsuarioRol {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_Usuario")
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_Rol")
+    @JoinColumn(name = "idRol")
     private Rol rol;
 
 
@@ -51,10 +51,5 @@ public class UsuarioRol {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-
-
-	
-	
-	
 
 }
