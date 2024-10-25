@@ -18,7 +18,7 @@ public class UserInfoDetails implements UserDetails {
     private String contraseña;
     private String nombre;
     private String id;
-    private Integer telefono;
+    private String telefono;
     private Integer cantidad_Reserva;
     
     
@@ -78,10 +78,10 @@ public class UserInfoDetails implements UserDetails {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	public Integer getCantidad_Reserva() {

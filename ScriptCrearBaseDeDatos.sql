@@ -8,7 +8,7 @@ CREATE TABLE canchitabs.usuario(
     nombreUsuario VARCHAR(255),
     email VARCHAR(255),
     cantidadReserva INT NOT NULL,
-    telefonoUsuario INT,
+    telefonoUsuario VARCHAR(144),
     contraseñaUsuario VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
     );
@@ -64,3 +64,8 @@ CREATE TABLE canchitabs.reserva(
         CONSTRAINT FK_ReservaEstado FOREIGN KEY (idEstadoReserva) REFERENCES estadoReserva(id),
         PRIMARY KEY (id)
     );
+
+
+INSERT INTO canchitabs.rol (id, nombre, descripcion) VALUES ('3','Usuario', 'Habilitado a reservar canchas')
+insert into canchitabs.rol(id, nombre, descripcion) values ('2', 'Operador','Habilitada la opcion de aceptar o rechazar una reserva')
+insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador','Habilitada la gestion de la aplicacion')
