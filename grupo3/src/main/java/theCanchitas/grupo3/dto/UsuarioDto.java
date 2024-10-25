@@ -7,7 +7,6 @@ public class UsuarioDto {
 	private String nombre;
 	private String email;
 	private String telefono;
-	private String contraseñaUsuario;
 	private Integer cantidadReserva;
 	private String rol;
 	private String token;
@@ -17,7 +16,6 @@ public class UsuarioDto {
 		this.nombre = usuario.getNombre();
 		this.email = usuario.getEmail();
 		this.telefono = usuario.getTelefono();
-		this.contraseñaUsuario = usuario.getContraseña();
 		this.cantidadReserva = usuario.getCantidad_Reserva();
 		this.token = token;
 		this.rol = rol;
@@ -49,12 +47,7 @@ public class UsuarioDto {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getContraseñaUsuario() {
-		return contraseñaUsuario;
-	}
-	public void setContraseñaUsuario(String contraseñaUsuario) {
-		this.contraseñaUsuario = contraseñaUsuario;
-	}
+
 	public Integer getCantidadReserva() {
 		return cantidadReserva;
 	}

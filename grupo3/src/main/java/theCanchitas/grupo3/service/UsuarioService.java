@@ -53,15 +53,5 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 
-	public String agregaUsuarioNuevo(UsuarioDto usuariodto) {
-		usuariodto.setContraseñaUsuario(encoder.encode(usuariodto.getContraseñaUsuario()));
-		String uuid = UUID.randomUUID().toString();
-		usuariodto.setContraseñaUsuario(uuid);
-		usuariodto.setCantidadReserva(0);
-		/*
-		repository.save(usuariodto);
-		*/
-		return "El Usuario: "+usuariodto.getNombre()+", fue agregado.";
-	}
 	
 }

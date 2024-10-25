@@ -6,7 +6,7 @@ CREATE DATABASE canchitabs;
 CREATE TABLE canchitabs.usuario(
 	id VARCHAR(36) NOT NULL,
     nombreUsuario VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     cantidadReserva INT NOT NULL,
     telefonoUsuario VARCHAR(144),
     contraseñaUsuario VARCHAR(255) NOT NULL,
