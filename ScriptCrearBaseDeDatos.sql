@@ -8,7 +8,7 @@ CREATE TABLE canchitabs.usuario(
     nombreUsuario VARCHAR(255),
     email VARCHAR(255),
     cantidadReserva INT NOT NULL,
-    telefonoUsuario INT,
+    telefonoUsuario VARCHAR(144),
     contraseñaUsuario VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
     );

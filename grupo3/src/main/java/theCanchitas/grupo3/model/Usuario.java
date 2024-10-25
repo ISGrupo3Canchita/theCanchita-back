@@ -19,7 +19,7 @@ public class Usuario {
 	private String nombreUsuario;
 	private String email;
 	private String contraseñaUsuario;
-	private Integer telefonoUsuario;
+	private String telefonoUsuario;
 	private Integer cantidadReserva;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")	
@@ -57,11 +57,11 @@ public class Usuario {
 		this.contraseñaUsuario = contraseñaUsuario;
 	}
 
-	public Integer getTelefonoUsuario() {
+	public String getTelefonoUsuario() {
 		return telefonoUsuario;
 	}
 
-	public void setTelefonoUsuario(Integer telefonoUsuario) {
+	public void setTelefonoUsuario(String telefonoUsuario) {
 		this.telefonoUsuario = telefonoUsuario;
 	}
 

@@ -6,20 +6,21 @@ public class UsuarioDto {
 	
 	private String nombre;
 	private String email;
-	private Integer telefono;
+	private String telefono;
 	private String contraseñaUsuario;
 	private Integer cantidadReserva;
 	private String rol;
 	private String token;
 	
 	
-	public UsuarioDto(UserInfoDetails usuario, String token) {
+	public UsuarioDto(UserInfoDetails usuario, String token, String rol) {
 		this.nombre = usuario.getNombre();
 		this.email = usuario.getEmail();
 		this.telefono = usuario.getTelefono();
 		this.contraseñaUsuario = usuario.getContraseña();
 		this.cantidadReserva = usuario.getCantidad_Reserva();
 		this.token = token;
+		this.rol = rol;
 	}
 	
 	public String getRol() {
@@ -42,10 +43,10 @@ public class UsuarioDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	public String getContraseñaUsuario() {

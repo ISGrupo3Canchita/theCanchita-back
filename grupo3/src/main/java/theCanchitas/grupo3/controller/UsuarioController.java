@@ -68,20 +68,24 @@ public class UsuarioController {
     @PostMapping("/ingreso")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
-    	String token = new String("");
+    	
     	
     	 Authentication authentication = authenticationManager.authenticate(
     	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
     	        );
     	        if (authentication.isAuthenticated()) {
-    	            token = jwtService.generateToken(authRequest.getUsername());
+    	
+    	            String token = jwtService.generateToken(authRequest.getUsername());
+    	            String usuarioRol = this.service.findRolById(usuario.getId());
+    	            UsuarioDto usuarioDto = new UsuarioDto(usuario, token, usuarioRol);
+    	            return usuarioDto;
+    	            
     	        } else {
     	            throw new UsernameNotFoundException("Invalid user request!");
     	        }
-        //String usuarioRol = this.service.findRolById(usuario.getId());
+       
 
-    	UsuarioDto usuarioDto = new UsuarioDto(usuario, token);
-    	return usuarioDto;
+    	
     }
     
     @PostMapping("/registroNuevoUsuario")

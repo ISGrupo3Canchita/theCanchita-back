@@ -47,11 +47,12 @@ public class UsuarioService implements UserDetailsService {
     }
 	
 	public String findRolById(String id) {
-		String rol = ((Optional<UsuarioRol>) this.usuarioRolRepository.findById(id)).get().getRol().getNombre();
-		return rol;
-
+	    Optional<UsuarioRol> usuarioRolOpt = usuarioRolRepository.findByIdUsuario(id);
+	    return usuarioRolOpt.map(ur -> ur.getRol().getNombre())
+	                         .orElse("Rol no encontrado");
 	}
-	
+
+
 	public String agregaUsuarioNuevo(UsuarioDto usuariodto) {
 		usuariodto.setContraseñaUsuario(encoder.encode(usuariodto.getContraseñaUsuario()));
 		String uuid = UUID.randomUUID().toString();
