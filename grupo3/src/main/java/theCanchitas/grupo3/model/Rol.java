@@ -14,18 +14,20 @@ import jakarta.persistence.Table;
 public class Rol {
 	
 	@Id
-	private String id;
+	private Integer id;
 	private String nombre;
 	private String descripcion;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = CascadeType.ALL)
     private Set<UsuarioRol> usuariorol;
 
-	public String getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
