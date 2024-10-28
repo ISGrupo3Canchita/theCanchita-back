@@ -12,7 +12,7 @@ public class EstadoCancha {
 	private Integer id;
 	
 	private String nombreEstado;
-	private String descripcion;
+	private String descripcionEstado;
 	
 	
 
@@ -28,11 +28,11 @@ public class EstadoCancha {
 	public void setNombreEstado(String nombreEstado) {
 		this.nombreEstado = nombreEstado;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescripcionEstado() {
+		return descripcionEstado;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionEstado(String descripcion) {
+		this.descripcionEstado = descripcion;
 	}
 	
 	

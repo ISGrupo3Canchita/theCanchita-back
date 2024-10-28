@@ -15,9 +15,11 @@ public class Cancha {
 	private Integer id;
 	private String nombreCancha;
 	private String direccion;
-	private String horario;
+	private String horarioInicio;
+	private String horarioFin;
 	
 	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idEstadoCancha")
 	private EstadoCancha estadoCancha;
@@ -49,13 +51,7 @@ public class Cancha {
 		this.direccion = direccion;
 	}
 
-	public String getHorario() {
-		return horario;
-	}
 
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
 
 	public EstadoCancha getEstadoCancha() {
 		return estadoCancha;
@@ -64,6 +60,23 @@ public class Cancha {
 	public void setEstadoCancha(EstadoCancha estadoCancha) {
 		this.estadoCancha = estadoCancha;
 	}
+	
+	public String getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(String horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public String getHorarioFin() {
+		return horarioFin;
+	}
+
+	public void setHorarioFin(String horarioFin) {
+		this.horarioFin = horarioFin;
+	}
+
 	
 	
 }
