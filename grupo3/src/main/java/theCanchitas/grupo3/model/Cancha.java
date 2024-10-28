@@ -12,7 +12,7 @@ import jakarta.persistence.JoinColumn;
 public class Cancha {
 	
 	@Id
-	private String id;
+	private Integer id;
 	private String nombreCancha;
 	private String direccion;
 	private String horario;
@@ -23,11 +23,13 @@ public class Cancha {
 	private EstadoCancha estadoCancha;
 
 
-	public String getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

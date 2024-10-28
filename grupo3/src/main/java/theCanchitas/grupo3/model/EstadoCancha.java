@@ -9,16 +9,17 @@ import jakarta.persistence.Table;
 public class EstadoCancha {
 	
 	@Id
-	private String id;
+	private Integer id;
 	
 	private String nombreEstado;
 	private String descripcion;
 	
 	
-	public String getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombreEstado() {
