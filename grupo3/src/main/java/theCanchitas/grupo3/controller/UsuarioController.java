@@ -1,5 +1,7 @@
 package theCanchitas.grupo3.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,11 +85,14 @@ public class UsuarioController {
     	            
     	        } else {
     	            throw new UsernameNotFoundException("Invalid user request!");
-    	        }
-       
-
+    	        } 
+    }
+    
+    @GetMapping("/misReserva/{$idusuario}")
+    public List<ReservaDto> listadoReservaPorUsuario(@PathVariable idUsuario) {
     	
     }
+
     
  
     
