@@ -32,7 +32,11 @@ public class CanchaController {
 		EstadoCancha estado = this.canchaService.obtenerEstadoCancha(1);
 		
 		System.out.println(estado.getNombreEstado());
+		
 		cancha.setEstadoCancha(estado);
+		
+		System.out.println(cancha);
+		
 		//Falla ACA
 		return this.canchaService.agregarCancha(cancha);
 		

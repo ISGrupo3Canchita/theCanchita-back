@@ -16,7 +16,7 @@ public class Cancha {
 	private String nombreCancha;
 	private String direccion;
 	private String horarioInicio;
-	private String horarioFin;
+	private String horarioCierre;
 	
 	
 
@@ -69,12 +69,12 @@ public class Cancha {
 		this.horarioInicio = horarioInicio;
 	}
 
-	public String getHorarioFin() {
-		return horarioFin;
+	public String getHorarioCierre() {
+		return horarioCierre;
 	}
 
 	public void setHorarioFin(String horarioFin) {
-		this.horarioFin = horarioFin;
+		this.horarioCierre = horarioFin;
 	}
 
 	

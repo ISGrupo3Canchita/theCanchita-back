@@ -23,7 +23,9 @@ public class CanchaService {
 	}
 	
 	public String agregarCancha(Cancha cancha) {
+		
 		this.canchaRepository.save(cancha);
+
 		return "Se ha añadido con éxito";
 		
 	}

@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import theCanchitas.grupo3.dto.UsuarioDto;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.model.UsuarioRol;
 import theCanchitas.grupo3.repository.UsuarioRepository;
@@ -43,6 +42,8 @@ public class UsuarioService implements UserDetailsService {
         usuario.setId(uuid);
         usuario.setCantidadReserva(0);
         repository.save(usuario);
+        
+        this.usuarioRolRepository.insertUsuarioRol(uuid, 3);
         return usuario.getNombreUsuario().toString();
     }
 	

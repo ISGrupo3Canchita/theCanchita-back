@@ -8,4 +8,5 @@ import theCanchitas.grupo3.model.EstadoCancha;
 @Repository
 public interface EstadoCanchaRepository extends JpaRepository<EstadoCancha, Integer> {
 	
+	
 }
