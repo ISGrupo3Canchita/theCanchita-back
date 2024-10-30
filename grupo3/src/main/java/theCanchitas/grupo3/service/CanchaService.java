@@ -1,5 +1,7 @@
 package theCanchitas.grupo3.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,9 @@ public class CanchaService {
 
 		return "Se ha añadido con éxito";
 		
+	}
+	
+	public List<Cancha> todasCanchasHabilitadas(){
+		return this.canchaRepository.findCanchasHabilitadas();
 	}
 }

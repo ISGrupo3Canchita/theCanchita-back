@@ -11,13 +11,10 @@ import jakarta.transaction.Transactional;
 import theCanchitas.grupo3.model.UsuarioRol;
 
 @Repository
-public interface UsuarioRolRepository extends JpaRepository<UsuarioRol, Integer>{
+public interface UsuarioRolRepository extends JpaRepository<UsuarioRol, String>{
 	
 	@Query(value ="SELECT ur FROM UsuarioRol ur WHERE ur.usuario.id = :id")
 	Optional<UsuarioRol> findByIdUsuario(String id);
 	
-	@Modifying
-	@Transactional
-	@Query("INSERT INTO UsuarioRol (idUsuario, idRol) VALUES (:idUsuario, :idRol)")
-	void insertUsuarioRol(String idUsuario, Integer idRol);
+
 }

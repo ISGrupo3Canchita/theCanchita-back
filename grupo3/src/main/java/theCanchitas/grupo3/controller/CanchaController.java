@@ -1,6 +1,10 @@
 package theCanchitas.grupo3.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,14 +35,30 @@ public class CanchaController {
 		
 		EstadoCancha estado = this.canchaService.obtenerEstadoCancha(1);
 		
-		System.out.println(estado.getNombreEstado());
-		
 		cancha.setEstadoCancha(estado);
 		
-		System.out.println(cancha);
-		
-		//Falla ACA
 		return this.canchaService.agregarCancha(cancha);
+	
+	}
+	
+	
+	
+	@GetMapping("/get/canchas/habilitadas")
+	public List<CanchaDto> getCanchasHabilitadas(){
+		List<Cancha> canchasHab =  this.canchaService.todasCanchasHabilitadas();
+		
+		List<CanchaDto> canchasDto = new ArrayList<CanchaDto>();
+		
+		String estado = this.canchaService.obtenerEstadoCancha(1).getNombreEstado();
+		
+		canchasHab.forEach(cancha -> {
+			CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(), estado);
+			canchasDto.add(canchaDto);
+		});
+		
+		return canchasDto;
+		
+		
 		
 		
 	}

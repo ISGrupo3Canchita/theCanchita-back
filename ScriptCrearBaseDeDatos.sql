@@ -20,7 +20,7 @@ CREATE TABLE canchitabs.rol(
     );
 
 CREATE TABLE canchitabs.usuariorol(
-    id INT NOT null AUTO_INCREMENT,
+    id VARCHAR(144) NOT null ,
     idUsuario VARCHAR(36) NOT NULL,
     idRol INT NOT NULL,
     PRIMARY KEY (id),
@@ -29,33 +29,33 @@ CREATE TABLE canchitabs.usuariorol(
 );
 
 CREATE TABLE canchitabs.estadoCancha(
-	id INT NOT null ,
+	id INT NOT null AUTO_INCREMENT ,
     nombreEstado VARCHAR(144),
     descripcionEstado VARCHAR(255),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE canchitabs.cancha(
-	id INT NOT null AUTO_INCREMENT ,
+	id VARCHAR(144) NOT null ,
     nombreCancha VARCHAR(255) DEFAULT ('Sin Nombre') ,
     idEstadoCancha INTEGER NOT NULL,
     direccion VARCHAR (144),
-    horarioInicio TIME NOT NULL,
-    horarioCierre TIME NOT NULL,
+    horarioInicio VARCHAR(144) NOT NULL,
+    horarioCierre VARCHAR(144) NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT FK_Cancha FOREIGN KEY (idEstadoCancha) REFERENCES estadoCancha(id)
 );
 CREATE TABLE canchitabs.estadoReserva(
-	id INT NOT null  ,
+	id INT NOT null AUTO_INCREMENT  ,
     nombreEstado VARCHAR(144),
     descripcionEstado VARCHAR(255),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE canchitabs.reserva(
-		id INT NOT null AUTO_INCREMENT ,
+		id VARCHAR(144) NOT null  ,
         idUsuario VARCHAR(36) NOT NULL,
-        idCancha INT NOT NULL,
+        idCancha VARCHAR(144) NOT NULL,
         idEstadoReserva INT NOT NULL,
         inicioReserva TIME NOT NULL,
         finRserva TIME NOT NULL,

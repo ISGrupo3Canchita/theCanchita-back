@@ -1,7 +1,11 @@
 package theCanchitas.grupo3.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -12,7 +16,7 @@ import jakarta.persistence.JoinColumn;
 public class Cancha {
 	
 	@Id
-	private Integer id;
+	private String id = UUID.randomUUID().toString();;
 	private String nombreCancha;
 	private String direccion;
 	private String horarioInicio;
@@ -27,11 +31,11 @@ public class Cancha {
 
 
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
