@@ -1,7 +1,11 @@
 package theCanchitas.grupo3.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,14 +16,14 @@ import jakarta.persistence.Table;
 public class UsuarioRol {
 	
 	@Id
-	private Integer id;
+	private String id = UUID.randomUUID().toString();
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

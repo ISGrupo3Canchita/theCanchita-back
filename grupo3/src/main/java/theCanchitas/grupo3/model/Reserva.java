@@ -3,6 +3,7 @@ package theCanchitas.grupo3.model;
 
 import java.sql.Time;
 import java.util.Set;
+import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,7 +20,7 @@ import jakarta.persistence.Table;
 public class Reserva {
 	
 	@Id
-	private Integer id;
+	private String id = UUID.randomUUID().toString();;
 	private Time inicioReserva;
 	private Time finReserva;
 	
@@ -39,11 +40,11 @@ public class Reserva {
 
 
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
