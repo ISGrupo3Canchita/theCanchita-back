@@ -1,5 +1,6 @@
 package theCanchitas.grupo3.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import theCanchitas.grupo3.dto.ReservaDto;
 import theCanchitas.grupo3.dto.UsuarioDto;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.model.UsuarioRol;
@@ -50,6 +52,20 @@ public class UsuarioService implements UserDetailsService {
 	    Optional<UsuarioRol> usuarioRolOpt = usuarioRolRepository.findByIdUsuario(id);
 	    return usuarioRolOpt.map(ur -> ur.getRol().getNombre())
 	                         .orElse("Rol no encontrado");
+	}
+	
+	public List<ReservaDto> findReservaByUserName (String userName) {
+		// TODO traerme el id del usuario
+		Optional<Usuario> usuario = repository.findByEmail(userName);
+		
+		String idUsuario = usuario.getid();
+		
+		// TODO traerme las reservas segun el id anterior
+		//List<ReservaDto> listaReservaDto =
+		
+		//return repository.listadoReservaPorUsuario(id);
+		
+		return null;
 	}
 
 

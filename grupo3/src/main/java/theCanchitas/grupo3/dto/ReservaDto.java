@@ -41,16 +41,16 @@ public class ReservaDto {
 	public void setEstadoreserva(String estadoreserva) {
 		this.estadoreserva = estadoreserva;
 	}
-	public Integer getInicioReserva() {
+	public Time getInicioReserva() {
 		return inicioReserva;
 	}
-	public void setInicioReserva(Integer inicioReserva) {
+	public void setInicioReserva(Time inicioReserva) {
 		this.inicioReserva = inicioReserva;
 	}
-	public Integer getFinReserva() {
+	public Time getFinReserva() {
 		return finReserva;
 	}
-	public void setFinReserva(Integer finReserva) {
+	public void setFinReserva(Time finReserva) {
 		this.finReserva = finReserva;
 	}
 	

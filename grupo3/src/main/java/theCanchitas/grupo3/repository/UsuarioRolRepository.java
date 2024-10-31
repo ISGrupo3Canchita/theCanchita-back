@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import theCanchitas.grupo3.model.UsuarioRol;
 
 @Repository
-public interface UsuarioRolRepository extends JpaRepository<UsuarioRol, String>{
+public interface UsuarioRolRepository extends JpaRepository<UsuarioRol, Integer>{
 	
 	@Query(value ="SELECT ur FROM UsuarioRol ur WHERE ur.usuario.id = :id")
 	Optional<UsuarioRol> findByIdUsuario(String id);

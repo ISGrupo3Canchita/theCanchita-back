@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import theCanchitas.grupo3.dto.ReservaDto;
 import theCanchitas.grupo3.dto.UsuarioDto;
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.request.AuthRequest;
@@ -71,8 +73,6 @@ public class UsuarioController {
     @PostMapping("/ingreso")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
-    	
-    	
     	 Authentication authentication = authenticationManager.authenticate(
     	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
     	        );
@@ -88,9 +88,9 @@ public class UsuarioController {
     	        } 
     }
     
-    @GetMapping("/misReserva/{$idusuario}")
-    public List<ReservaDto> listadoReservaPorUsuario(@PathVariable idUsuario) {
-    	
+    @GetMapping("/listaReserva") 
+    public List<ReservaDto> listadoReservaPorUsuario(@PathVariable String userName ) {
+    	return service.findReservaByUserName(userName);
     }
 
     
