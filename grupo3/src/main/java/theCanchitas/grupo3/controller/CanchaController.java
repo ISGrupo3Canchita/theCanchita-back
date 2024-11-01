@@ -52,7 +52,8 @@ public class CanchaController {
 		String estado = this.canchaService.obtenerEstadoCancha(1).getNombreEstado();
 		
 		canchasHab.forEach(cancha -> {
-			CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(), estado);
+			CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(),
+									  	cancha.getHorarioInicio(), cancha.getHorarioCierre(), estado);
 			canchasDto.add(canchaDto);
 		});
 		

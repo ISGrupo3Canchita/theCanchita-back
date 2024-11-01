@@ -1,5 +1,7 @@
 package theCanchitas.grupo3.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,20 +60,17 @@ public class UsuarioService implements UserDetailsService {
         Rol rol = rolRepository.findByNombre("Usuario");
         
         usuarioRol.setRol(rol);
-        
+        /*
         System.out.println(usuario);
         System.out.println(rol.getNombre() + "este es el rol");
         System.out.println(usuarioRol.getRol() + "" +  usuarioRol.getUsuarios() + "" + "este es el usuarioRol");
-       
+       */
         if(usuario.getUsuariorol() != null) {
         	for (UsuarioRol usuariorol : usuario.getUsuariorol()) {
         		usuariorol.setUsuarios(usuario);
         	}
         }
         
-        /*
-         * falla al guardar:
-         */
         usuarioRolRepository.save(usuarioRol);
 		
         
@@ -85,5 +84,16 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 
+	public List<Usuario> todosLosUsuarios(){
+		List<Usuario> usuarios = this.repository.findAll();
+//		List<UserInfoDetails> usuariosDetails = new ArrayList<UserInfoDetails>();
+//		
+//		usuarios.forEach(usuario -> {
+//			UserInfoDetails usuarioDetails = new UserInfoDetails(usuario);
+//			usuariosDetails.add(usuarioDetails);
+//		});
+		
+		return usuarios;
+	}
 	
 }
