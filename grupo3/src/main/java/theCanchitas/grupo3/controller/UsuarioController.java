@@ -37,7 +37,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/registro")
-    public String addNewUser(@RequestBody Usuario usuario) { 	
+    public String addNewUser(@RequestBody Usuario usuario) {
+    	System.out.println(usuario.getEmail());
     	return service.addUser(usuario);
     }
 

@@ -23,7 +23,7 @@ public class Reserva {
 	
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "idUsuario")
-	private Usuario Usuario;
+	private Usuario usuario;
 	
 	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn (name = "estadoReserva")
@@ -42,11 +42,11 @@ public class Reserva {
 	}
 
 	public Usuario getUsuario() {
-		return Usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
-		Usuario = usuario;
+		this.usuario = usuario;
 	}
 
 	public Time getInicioReserva() {

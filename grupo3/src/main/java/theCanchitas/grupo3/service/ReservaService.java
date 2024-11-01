@@ -20,6 +20,6 @@ public class ReservaService {
 	
 	public Reserva reservaPorUsuario(Usuario usuario) {
 		
-		return repository.findByUsuario(usuario);
+		return repository.findByusuario(usuario);
 	}
 }

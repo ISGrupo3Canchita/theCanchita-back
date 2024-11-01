@@ -9,5 +9,5 @@ import theCanchitas.grupo3.model.Usuario;
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
 	
-	Reserva findByUsuario(Usuario usuario);
+	Reserva findByusuario(Usuario usuario);
 }
