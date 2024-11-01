@@ -1,12 +1,12 @@
-drop database canchitabs;
+#drop database canchitabs;
 
-select * from canchitabs.usuario;
+#select * from canchitabs.usuario;
 
-select * from canchitabs.usuariorol;
+#select * from canchitabs.usuariorol;
 
-select * from  canchitabs.rol;
+#select * from  canchitabs.rol;
 
-select id from canchitabs.usuario cu where cu.email = "gnz@mail.com";
+#select id from canchitabs.usuario cu where cu.email = "gnz@mail.com";
 
 
 #Insert Para pruebas
@@ -14,12 +14,13 @@ select id from canchitabs.usuario cu where cu.email = "gnz@mail.com";
 insert into canchitabs.usuario (id, nombreUsuario, email, cantidadReserva, telefonoUsuario, contraseñaUsuario )
 	value ('cerouno', 'Gonzalo', 'gnz@gnz', 0, '02243','123');
     
+# Traeme un el id de un usuario segun el email.    
 select id from canchitabs.usuario cu where cu.email = "gnz@gnz";  
   
 #Agrego un rol Al Usuario
 Insert into canchitabs.usuariorol (id, idUsuario, idRol) 
-		value( "gnz",
-        (select id from canchitabs.usuario cu where cu.email = "gnz@mail.com"),
+		value( 1,
+        (select id from canchitabs.usuario cu where cu.email = "gnz@gnz"),
         3);
 #Agregar Cancha
 Insert into canchitabs.cancha (id, nombreCancha, idEstadoCancha, direccion, horarioInicio, horarioCierre)
