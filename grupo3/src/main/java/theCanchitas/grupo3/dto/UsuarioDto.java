@@ -1,24 +1,50 @@
 package theCanchitas.grupo3.dto;
 
+import java.io.Serializable;
+
 import theCanchitas.grupo3.security.UserInfoDetails;
 
-public class UsuarioDto {
+public class UsuarioDto implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	private String id;
 	private String nombre;
 	private String email;
 	private String telefono;
 	private Integer cantidadReserva;
+	private String contraseña;
 	private String rol;
 	private String token;
 	
-	
+	/*
 	public UsuarioDto(UserInfoDetails usuario, String token, String rol) {
 		this.nombre = usuario.getNombre();
 		this.email = usuario.getEmail();
 		this.telefono = usuario.getTelefono();
 		this.cantidadReserva = usuario.getCantidad_Reserva();
+		this.contraseña = usuario.getContraseña();
+		this.id = usuario.getId();
 		this.token = token;
 		this.rol = rol;
+	}
+	*/
+	
+	public UsuarioDto(String nombre, String email, String telefono, Integer cantidadReserva,
+			String contraseña, String id, String rol, String token) {
+		this.nombre = nombre;
+		this.cantidadReserva = cantidadReserva;
+		this.rol = rol;
+		this.contraseña = contraseña;
+		this.email = email;
+		this.telefono = telefono;
+		this.token = token;
+		this.id = id;
+		
 	}
 	
 	public String getRol() {
@@ -60,6 +86,19 @@ public class UsuarioDto {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 }
