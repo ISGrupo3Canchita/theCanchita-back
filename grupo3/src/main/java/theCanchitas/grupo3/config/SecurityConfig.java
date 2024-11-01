@@ -40,7 +40,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/theCanchita/prueba", "theCanchita/post/usuario/", "/theCanchita/generateToken",
                 		"theCanchita/add/usuario" , "/cancha/post/cancha" , "cancha/get/canchas/habilitadas",
-                		"theCanchita/get/lista/usuarios").permitAll()
+                		"theCanchita/get/lista/usuarios", "/cancha/delete/cancha/**").permitAll()
                 .anyRequest().authenticated() // Protect all other endpoints
             )
             .sessionManagement(sess -> sess

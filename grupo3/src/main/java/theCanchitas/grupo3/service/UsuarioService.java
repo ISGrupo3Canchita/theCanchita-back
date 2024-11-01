@@ -86,12 +86,6 @@ public class UsuarioService implements UserDetailsService {
 
 	public List<Usuario> todosLosUsuarios(){
 		List<Usuario> usuarios = this.repository.findAll();
-//		List<UserInfoDetails> usuariosDetails = new ArrayList<UserInfoDetails>();
-//		
-//		usuarios.forEach(usuario -> {
-//			UserInfoDetails usuarioDetails = new UserInfoDetails(usuario);
-//			usuariosDetails.add(usuarioDetails);
-//		});
 		
 		return usuarios;
 	}

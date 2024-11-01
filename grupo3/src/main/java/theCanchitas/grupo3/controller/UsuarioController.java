@@ -41,16 +41,13 @@ public class UsuarioController {
 
     @PostMapping("/add/usuario")
     public String addNewUser(@RequestBody UsuarioDto usuarioDto) { 
-    	
-    	System.out.println(usuarioDto);
-    	
+    	    	
     	Usuario usuario = new Usuario();
     	usuario.setNombreUsuario(usuarioDto.getNombre());
     	usuario.setEmail(usuarioDto.getEmail());
     	usuario.setTelefonoUsuario(usuarioDto.getTelefono());
     	usuario.setContraseñaUsuario(usuarioDto.getContraseña());
     	
-    	System.out.println(usuario);
     	
     	return service.addUser(usuario);
     }

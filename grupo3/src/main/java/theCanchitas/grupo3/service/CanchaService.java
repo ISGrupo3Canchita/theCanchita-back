@@ -35,4 +35,24 @@ public class CanchaService {
 	public List<Cancha> todasCanchasHabilitadas(){
 		return this.canchaRepository.findCanchasHabilitadas();
 	}
+	
+	public String eliminarCancha(String id) {
+		try {
+		Cancha cancha = this.canchaRepository.findById(id).get();
+		EstadoCancha estadoEliminado = this.estadoCanchaRepository.findById(3).get();
+		cancha.setEstadoCancha(estadoEliminado);
+		this.canchaRepository.save(cancha);
+		}
+		
+		catch(Exception e){
+			 System.out.println(e);
+			 return e.toString();
+		}
+		
+		return "Se ha eliminado con éxtio";
+		
+		
+		
+		
+	}
 }
