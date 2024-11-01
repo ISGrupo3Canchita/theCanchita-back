@@ -38,8 +38,10 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/theCanchita/prueba","/reserva/prueba", "/theCanchita/registro", "/theCanchita/generateToken",
-                		"theCanchita/ingreso","theCanchita/listaReserva").permitAll()
+                .requestMatchers("/theCanchita/prueba", "theCanchita/post/usuario/", "/theCanchita/generateToken",
+                		"theCanchita/add/usuario" , "/cancha/post/cancha" , "cancha/get/canchas/habilitadas",
+                		"theCanchita/get/lista/usuarios").permitAll()
+
                 .anyRequest().authenticated() // Protect all other endpoints
             )
             .sessionManagement(sess -> sess

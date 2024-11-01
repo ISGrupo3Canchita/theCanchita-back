@@ -1,5 +1,7 @@
 package theCanchitas.grupo3.service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,9 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import theCanchitas.grupo3.dto.ReservaDto;
+import jakarta.transaction.Transactional;
+import theCanchitas.grupo3.model.Rol;
+
 import theCanchitas.grupo3.model.Usuario;
 import theCanchitas.grupo3.model.UsuarioRol;
+import theCanchitas.grupo3.repository.RolRepository;
 import theCanchitas.grupo3.repository.UsuarioRepository;
 import theCanchitas.grupo3.repository.UsuarioRolRepository;
 import theCanchitas.grupo3.security.UserInfoDetails;
@@ -27,6 +34,9 @@ public class UsuarioService implements UserDetailsService {
 	private UsuarioRolRepository usuarioRolRepository;
 	
 	@Autowired
+	private RolRepository rolRepository;
+	
+	@Autowired
 	private PasswordEncoder encoder;
 
 	@Override
@@ -38,6 +48,7 @@ public class UsuarioService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 	}
 	
+	@Transactional
 	public String addUser(Usuario usuario) {
         // Encode password before saving the user
         usuario.setContraseñaUsuario(encoder.encode(usuario.getContraseñaUsuario()));
@@ -45,6 +56,29 @@ public class UsuarioService implements UserDetailsService {
         usuario.setId(uuid);
         usuario.setCantidadReserva(0);
         repository.save(usuario);
+        
+        
+        UsuarioRol usuarioRol = new UsuarioRol();
+        usuarioRol.setUsuarios(usuario);
+        
+        
+        Rol rol = rolRepository.findByNombre("Usuario");
+        
+        usuarioRol.setRol(rol);
+        /*
+        System.out.println(usuario);
+        System.out.println(rol.getNombre() + "este es el rol");
+        System.out.println(usuarioRol.getRol() + "" +  usuarioRol.getUsuarios() + "" + "este es el usuarioRol");
+       */
+        if(usuario.getUsuariorol() != null) {
+        	for (UsuarioRol usuariorol : usuario.getUsuariorol()) {
+        		usuariorol.setUsuarios(usuario);
+        	}
+        }
+        
+        usuarioRolRepository.save(usuarioRol);
+		
+        
         return usuario.getNombreUsuario().toString();
     }
 	
@@ -67,5 +101,16 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 
+	public List<Usuario> todosLosUsuarios(){
+		List<Usuario> usuarios = this.repository.findAll();
+//		List<UserInfoDetails> usuariosDetails = new ArrayList<UserInfoDetails>();
+//		
+//		usuarios.forEach(usuario -> {
+//			UserInfoDetails usuarioDetails = new UserInfoDetails(usuario);
+//			usuariosDetails.add(usuarioDetails);
+//		});
+		
+		return usuarios;
+	}
 	
 }

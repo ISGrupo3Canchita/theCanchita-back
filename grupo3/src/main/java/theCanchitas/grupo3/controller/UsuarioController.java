@@ -1,5 +1,8 @@
 package theCanchitas.grupo3.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,9 +39,21 @@ public class UsuarioController {
         return "The Canchita futbol club";
     }
 
-    @PostMapping("/registro")
-    public String addNewUser(@RequestBody Usuario usuario) {
-    	System.out.println(usuario.getEmail());
+
+    @PostMapping("/add/usuario")
+    public String addNewUser(@RequestBody UsuarioDto usuarioDto) { 
+    	
+    	System.out.println(usuarioDto);
+    	
+    	Usuario usuario = new Usuario();
+    	usuario.setNombreUsuario(usuarioDto.getNombre());
+    	usuario.setEmail(usuarioDto.getEmail());
+    	usuario.setTelefonoUsuario(usuarioDto.getTelefono());
+    	usuario.setContraseñaUsuario(usuarioDto.getContraseña());
+    	
+    	System.out.println(usuario);
+    	
+
     	return service.addUser(usuario);
     }
 
@@ -66,7 +81,7 @@ public class UsuarioController {
         }
     }
     
-    @PostMapping("/ingreso")
+    @PostMapping("/post/usuario/")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
     	 Authentication authentication = authenticationManager.authenticate(
@@ -76,7 +91,8 @@ public class UsuarioController {
     	
     	            String token = jwtService.generateToken(authRequest.getUsername());
     	            String usuarioRol = this.service.findRolById(usuario.getId());
-    	            UsuarioDto usuarioDto = new UsuarioDto(usuario, token, usuarioRol);
+    	            UsuarioDto usuarioDto = new UsuarioDto(usuario.getNombre(), usuario.getEmail(), usuario.getTelefono()
+    	            		, usuario.getCantidad_Reserva(), null, null, usuarioRol, token);
     	            return usuarioDto;
     	            
     	        } else {
@@ -84,4 +100,20 @@ public class UsuarioController {
     	        } 
     }
 
+    @GetMapping("/get/lista/usuarios")
+    public List<UsuarioDto> getTodosUsuarios(){
+    	List<Usuario> usuarios = this.service.todosLosUsuarios();
+    	List<UsuarioDto> usuariosDto = new ArrayList<UsuarioDto>();
+    	
+    	usuarios.forEach(usuario -> {
+    		String rol = this.service.findRolById(usuario.getId());
+    		UsuarioDto usuarioDto = new UsuarioDto(usuario.getNombreUsuario(), usuario.getEmail(), usuario.getTelefonoUsuario(), 
+    								usuario.getCantidadReserva(), null, usuario.getId(), rol, null);
+    		
+    		usuariosDto.add(usuarioDto);
+    	});
+    	
+    	return usuariosDto;
+    }
+    
 }
