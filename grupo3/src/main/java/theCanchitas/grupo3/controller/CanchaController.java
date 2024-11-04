@@ -68,4 +68,5 @@ public class CanchaController {
 	public String deleteCancha(@PathVariable String id) {
 		return this.canchaService.eliminarCancha(id);
 	}
+	
 }
