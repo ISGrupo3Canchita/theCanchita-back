@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -24,6 +25,10 @@ public class Usuario {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")	
 	private Set<UsuarioRol> usuariorol;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idUsuario" )
+	private Set<Reserva> reserva;
 
 	public String getId() {
 		return id;

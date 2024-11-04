@@ -51,9 +51,6 @@ public class UsuarioController {
     	usuario.setEmail(usuarioDto.getEmail());
     	usuario.setTelefonoUsuario(usuarioDto.getTelefono());
     	usuario.setContraseñaUsuario(usuarioDto.getContraseña());
-    	
-    	System.out.println(usuario);
-    	
 
     	return service.addUser(usuario);
     }

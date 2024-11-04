@@ -2,7 +2,7 @@ package ar.edu.unq.grupo3.theCanchita.model;
 
 
 import java.sql.Time;
-import java.util.Set;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -11,15 +11,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
 import jakarta.persistence.Table;
+
+//@NamedEntityGraph(name= "ReservaWithUsuario", attributeNodes = @NamedAttributeNode("usuario"))
 
 @Entity
 @Table(name = "reserva", schema ="canchitabs")
 public class Reserva {
 	
 	@Id
-	private String id = UUID.randomUUID().toString();;
+	private String id = UUID.randomUUID().toString();
 	private Time inicioReserva;
 	private Time finReserva;
 	
@@ -27,14 +28,14 @@ public class Reserva {
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 	
-	@ManyToOne( cascade = CascadeType.ALL)
-	@JoinColumn (name = "estadoReserva")
-	private EstadoReserva estadoreserva;
-	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCancha")
 	private Cancha cancha;
-  
+	
+	@ManyToOne( cascade = CascadeType.ALL)
+	@JoinColumn (name = "idEstadoReserva")
+	private EstadoReserva estadoreserva;
+	
 	public String getId() {
 
 		return id;

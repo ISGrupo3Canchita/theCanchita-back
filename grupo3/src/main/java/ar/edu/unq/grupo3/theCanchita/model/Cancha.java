@@ -1,13 +1,14 @@
 package ar.edu.unq.grupo3.theCanchita.model;
 
+import java.util.Set;
 import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
@@ -23,12 +24,13 @@ public class Cancha {
 	private String horarioCierre;
 	
 	
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idEstadoCancha")
 	private EstadoCancha estadoCancha;
-
-
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCancha")
+	private Set<Reserva> reserva;
 
 
 	public String getId() {

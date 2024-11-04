@@ -56,11 +56,9 @@ public class UsuarioService implements UserDetailsService {
         usuario.setCantidadReserva(0);
         repository.save(usuario);
         
-        
         UsuarioRol usuarioRol = new UsuarioRol();
         usuarioRol.setUsuarios(usuario);
-        
-        
+
         Rol rol = rolRepository.findByNombre("Usuario");
         
         usuarioRol.setRol(rol);
@@ -77,7 +75,7 @@ public class UsuarioService implements UserDetailsService {
         
         usuarioRolRepository.save(usuarioRol);
 		
-        
+  
         return usuario.getNombreUsuario().toString();
     }
 	
@@ -85,18 +83,6 @@ public class UsuarioService implements UserDetailsService {
 	    Optional<UsuarioRol> usuarioRolOpt = usuarioRolRepository.findByIdUsuario(id);
 	    return usuarioRolOpt.map(ur -> ur.getRol().getNombre())
 	                         .orElse("Rol no encontrado");
-	}
-	
-	public List<ReservaDto> findReservaByUserName (String userName) {
-		// TODO traerme el id del usuario
-		Optional<Usuario> usuario = repository.findByEmail(userName);
-		
-		System.out.println(usuario);		
-		// TODO traerme las reservas segun el id anterior
-		//List<ReservaDto> listaReservaDto
-
-		
-		return null;
 	}
 
 

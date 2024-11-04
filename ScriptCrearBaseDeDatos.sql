@@ -58,7 +58,7 @@ CREATE TABLE canchitabs.reserva(
         idCancha VARCHAR(144) NOT NULL,
         idEstadoReserva INT NOT NULL,
         inicioReserva TIME NOT NULL,
-        finRserva TIME NOT NULL,
+        finReserva TIME NOT NULL,
         CONSTRAINT FK_UsuarioReserva FOREIGN KEY (idUsuario) REFERENCES usuario(id),
         CONSTRAINT FK_CanchaReserva FOREIGN KEY (idCancha) REFERENCES cancha(id),
         CONSTRAINT FK_ReservaEstado FOREIGN KEY (idEstadoReserva) REFERENCES estadoReserva(id),

@@ -11,7 +11,7 @@ public class EstadoReserva {
 	@Id
 	private Integer id;
 	private String nombreEstado;
-	private String descripcion;
+	private String descripcionEstado;
 	
 	public Integer getId() {
 		return id;
@@ -26,9 +26,9 @@ public class EstadoReserva {
 		this.nombreEstado = nombreEstado;
 	}
 	public String getDescripcion() {
-		return descripcion;
+		return descripcionEstado;
 	}
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		this.descripcionEstado = descripcion;
 	}
 }
