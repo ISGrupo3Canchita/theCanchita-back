@@ -9,16 +9,22 @@ import ar.edu.unq.grupo3.theCanchita.model.EstadoReserva;
 import ar.edu.unq.grupo3.theCanchita.model.Reserva;
 import ar.edu.unq.grupo3.theCanchita.model.Usuario;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, String> {
+
+	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado" )
+	public List<Reserva> findWithUsuarioAndCanchaAndEstadoByUsuario(Usuario usuario);
 	
-//	public List<Reserva> findByUsuario(Usuario usuario);
+	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado" )
+	public List<Reserva> findWithUsuarioAndCanchaAndEstadoByCancha(Cancha cancha);
 	
-	public List<Reserva> findAllReservaByUsuario(Usuario usuario);
+	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado")
+	public List<Reserva> findWithUsuarioAndCanchaAndEstadoByEstadoreserva(EstadoReserva estadoreserva);
 	
-	public List<Reserva> findByCancha(Cancha cancha);
-	
-	public List<Reserva> findByEstadoreserva(EstadoReserva estadoreserva);
+//	@EntityGraph(value = "ReservaWithEstado")
+//	public Optional<Reserva> findWithEstadoById(String Id);
+//	
 }

@@ -15,11 +15,12 @@
 #		value( 1,(select id from canchitabs.usuario cu where cu.email = "gnz@gnz"), 3);
 
 #	---------- Agregar Cancha ----------
-#	select * from canchitabs.cancha; 
+	select * from canchitabs.cancha; 
 #	Insert into canchitabs.cancha (id, nombreCancha, idEstadoCancha, direccion, horarioInicio, horarioCierre)
 #		value('uno', 'El Potrero', 1, 'Por Ahí', "8:00:00", "21:00:00");
 	
 #Agregouna Reserva
-#	select * from canchitabs.reserva;
+	select * from canchitabs.reserva;
+    select * from canchitabs.reserva cr where cr.idEstadoReserva=3;
 #	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finRserva) 
 #		VALUE (1, 'cerouno', 1, 1, 11,12 );

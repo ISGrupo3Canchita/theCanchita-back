@@ -41,7 +41,8 @@ public class SecurityConfig {
                 .requestMatchers("/theCanchita/prueba", "theCanchita/post/usuario/", "/theCanchita/generateToken",
                 		"theCanchita/add/usuario" , "/cancha/post/cancha" , "cancha/get/canchas/habilitadas",
                 		"reserva/prueba","reserva/post/agregarReserva","reserva/get/reservas",
-                		"reserva/get/reservaXusuario/**","reserva/get/reservaXcancha/**","/get/reservaXestado/**",
+                		"reserva/get/reservaXusuario/**","reserva/get/reservaXcancha/**","reserva/get/reservaXestado/**",
+                		"/actualizar/**/estado/**",
                 		"theCanchita/get/lista/usuarios").permitAll()
 
                 .anyRequest().authenticated() // Protect all other endpoints

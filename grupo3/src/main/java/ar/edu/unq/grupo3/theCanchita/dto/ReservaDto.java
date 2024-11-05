@@ -27,8 +27,7 @@ public class ReservaDto implements Serializable {
 		this.idCancha = reserva.getCancha().getId();
 		this.estadoreserva = reserva.getEstadoreserva().getNombreEstado();
 		this.inicioReserva = reserva.getInicioReserva();
-		this.finReserva = reserva.getFinReserva();
-		
+		this.finReserva = reserva.getFinReserva();	
 	}
 
 //	-----------------------Setter and Getter

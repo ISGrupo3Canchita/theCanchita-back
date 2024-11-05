@@ -2,8 +2,8 @@ package ar.edu.unq.grupo3.theCanchita.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ar.edu.unq.grupo3.theCanchita.dto.ReservaDto;
-import ar.edu.unq.grupo3.theCanchita.dto.ReservasDtos;
 import ar.edu.unq.grupo3.theCanchita.model.Reserva;
 import ar.edu.unq.grupo3.theCanchita.service.ReservaService;
 
@@ -28,7 +27,7 @@ public class ReservaController {
         return "Si llegas al Controller Reserva";
 	}
    
-	@PostMapping("/post/agregarReserva")
+	@PostMapping()
 	public String agregarReserva(@RequestBody ReservaDto nuevaReserva) {
 		return this.reservaServicio.agregarReserva(nuevaReserva);
 	}
@@ -44,22 +43,45 @@ public class ReservaController {
 	return reservasDtos;
 	}
 	
-	@GetMapping ("/get/reservaXusuario/{idUsuario}")
-	public List<Reserva> reservasPorUsuario(@PathVariable String idUsuario){
-		return this.reservaServicio.reservasPoridUsuario(idUsuario);
+	@GetMapping(path ="/get/reservaXusuario/{idUsuario}")
+	@ResponseBody
+	public ResponseEntity<List<ReservaDto>> reservasPorUsuario(@PathVariable String idUsuario){
+		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(idUsuario);
+		List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
+		reservas.forEach(reserva -> {
+			ReservaDto reservaDto = new ReservaDto(reserva);
+			reservasDtos.add(reservaDto);
+		});
+		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping ("/get/reservaXcancha/{idCancha}")
-	public List<Reserva> reservasPorCancha(@PathVariable String idCancha){
-		System.out.println("CONTROLLER RESERVA POR CANCHA");
-		return this.reservaServicio.reservasPorIdCancha(idCancha);
+	@GetMapping (path = "/get/reservaXcancha/{idCancha}")
+	@ResponseBody
+	public ResponseEntity<List<ReservaDto>> reservasPorCancha(@PathVariable String idCancha){
+		List<Reserva> reservas = this.reservaServicio.reservasPorIdCancha(idCancha);
+		List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
+		reservas.forEach(reserva ->{
+			ReservaDto reservaDto = new ReservaDto(reserva);
+			reservasDtos.add(reservaDto);
+		});
+		return ResponseEntity.ok(reservasDtos);
 	}
-	@GetMapping ("/get/reservaXestado/{estado}")
-	public List<Reserva> reservasPorEstado(@PathVariable String Estado){
-		System.out.println("CONTROLLER RESERVA POR ESTADO");
-		return this.reservaServicio.reservasPorEstado(Estado);
+	@GetMapping (path = "/get/reservaXestado/{estado}")
+	@ResponseBody
+	public ResponseEntity<List<ReservaDto>> reservasPorEstado(@PathVariable String estadoReserva){
+		List<Reserva> reservas =this.reservaServicio.reservasPorEstado(estadoReserva);
+		List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
+		reservas.forEach(reserva -> {
+			ReservaDto reservaDto = new ReservaDto(reserva);
+			reservasDtos.add(reservaDto);
+		});
+		return ResponseEntity.ok(reservasDtos);
 	}
+	
+//	@PostMapping(path ="/actualizar/{idReserva}/estado/{estado}")
+//	public void cambioEstadoReserva(@PathVariable String idReserva, @PathVariable String estadoReserva) {
+//		System.out.println("ESTOY EN EL CONTROLLER");
+//		this.reservaServicio.actualizarEstado(idReserva, estadoReserva);
+//	}
+	
 }
-	
-	
-
