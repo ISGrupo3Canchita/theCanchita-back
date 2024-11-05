@@ -42,7 +42,7 @@ public class SecurityConfig {
                 		"theCanchita/add/usuario" , "/cancha/post/cancha" , "cancha/get/canchas/habilitadas",
                 		"reserva/prueba","reserva/post/agregarReserva","reserva/get/reservas",
                 		"reserva/get/reservaXusuario/**","reserva/get/reservaXcancha/**","reserva/get/reservaXestado/**",
-                		"/actualizar/**/estado/**",
+                		"reserva/actualizar",
                 		"theCanchita/get/lista/usuarios").permitAll()
 
                 .anyRequest().authenticated() // Protect all other endpoints

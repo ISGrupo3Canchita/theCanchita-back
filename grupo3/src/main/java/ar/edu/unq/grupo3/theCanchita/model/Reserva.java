@@ -21,8 +21,6 @@ import jakarta.persistence.Table;
 			@NamedAttributeNode("cancha"),
 			})
 
-//@NamedEntityGraph(name ="ReservaWithEstado", attributeNodes = @NamedAttributeNode("estadoReserva"))
-
 @Table(name = "reserva", schema ="canchitabs")
 public class Reserva {
 	

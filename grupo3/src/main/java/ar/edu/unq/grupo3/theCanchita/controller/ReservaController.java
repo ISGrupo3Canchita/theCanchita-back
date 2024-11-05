@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ar.edu.unq.grupo3.theCanchita.dto.ReservaDto;
 import ar.edu.unq.grupo3.theCanchita.model.Reserva;
+import ar.edu.unq.grupo3.theCanchita.request.ReservaRequest;
 import ar.edu.unq.grupo3.theCanchita.service.ReservaService;
 
 @RestController
@@ -78,10 +79,10 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-//	@PostMapping(path ="/actualizar/{idReserva}/estado/{estado}")
-//	public void cambioEstadoReserva(@PathVariable String idReserva, @PathVariable String estadoReserva) {
-//		System.out.println("ESTOY EN EL CONTROLLER");
-//		this.reservaServicio.actualizarEstado(idReserva, estadoReserva);
-//	}
+	@PostMapping(path ="/actualizar")
+	public void cambioEstadoReserva(@RequestBody ReservaRequest reservaRequest ) {
+		System.out.println("ESTOY EN EL CONTROLLER");
+		this.reservaServicio.actualizarEstado(reservaRequest.getId(),reservaRequest.getEstadoreserva());
+	}
 	
 }

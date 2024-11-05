@@ -24,3 +24,5 @@
     select * from canchitabs.reserva cr where cr.idEstadoReserva=3;
 #	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finRserva) 
 #		VALUE (1, 'cerouno', 1, 1, 11,12 );
+
+update canchitabs.reserva set idEstadoReserva = 3 where id= "0a2c3c08-9366-48af-95b4-bbbda73cfdd0";

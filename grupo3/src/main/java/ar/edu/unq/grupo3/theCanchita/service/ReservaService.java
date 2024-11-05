@@ -76,26 +76,27 @@ public class ReservaService {
 		return reservas;
 	}
 	
-//	@Transactional(readOnly = true)
-//	public void actualizarEstado(String idReserva, String estadoReserva) {
-//		Reserva reserva = this.repository.findWithEstadoById(idReserva).get();
-//		
-//		System.out.println(reserva.getEstadoreserva().getNombreEstado());
-//		
-//		EstadoReserva nuevoEstado= new EstadoReserva();
-//		if(estadoReserva.equals("Pendiente")) {
-//			 nuevoEstado = this.estadoReservaRepository.findById(3).get();
-//		}else if(estadoReserva.equals("Reservada")) {
-//			nuevoEstado = this.estadoReservaRepository.findById(1).get();
-//		}else if(estadoReserva.equals("Finalizada")) {
-//			nuevoEstado = this.estadoReservaRepository.findById(2).get();
-//		}else if (estadoReserva.equals("Cancelada")) {
-//			nuevoEstado = this.estadoReservaRepository.findById(4).get();
-//		}
-//		
-//		reserva.setEstadoreserva(nuevoEstado);
-//		
-//		System.out.println(reserva.getEstadoreserva().getNombreEstado());
-//		
-//	}
+	@Transactional(readOnly = true)
+	public void actualizarEstado(String idReserva, String estadoReserva) {
+		
+		Reserva reserva = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
+		
+		System.out.println(reserva.getEstadoreserva().getNombreEstado());
+		
+		EstadoReserva nuevoEstado= new EstadoReserva();
+		if(estadoReserva.equals("Pendiente")) {
+			 nuevoEstado = this.estadoReservaRepository.findById(3).get();
+		}else if(estadoReserva.equals("Reservada")) {
+			nuevoEstado = this.estadoReservaRepository.findById(1).get();
+		}else if(estadoReserva.equals("Finalizada")) {
+			nuevoEstado = this.estadoReservaRepository.findById(2).get();
+		}else if (estadoReserva.equals("Cancelada")) {
+			nuevoEstado = this.estadoReservaRepository.findById(4).get();
+		}
+		
+		reserva.setEstadoreserva(nuevoEstado);
+		
+		System.out.println(reserva.getEstadoreserva().getNombreEstado());
+		
+	}
 }

@@ -24,7 +24,9 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado")
 	public List<Reserva> findWithUsuarioAndCanchaAndEstadoByEstadoreserva(EstadoReserva estadoreserva);
 	
-//	@EntityGraph(value = "ReservaWithEstado")
-//	public Optional<Reserva> findWithEstadoById(String Id);
-//	
+	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado")
+	public Optional<Reserva> findWithUsuarioAndCanchaAndEstadoById(String Id);
+	
+	
+	
 }
