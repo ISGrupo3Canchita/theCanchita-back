@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ar.edu.unq.grupo3.theCanchita.dto.UsuarioDto;
 import ar.edu.unq.grupo3.theCanchita.model.Usuario;
 import ar.edu.unq.grupo3.theCanchita.request.AuthRequest;
@@ -42,16 +41,17 @@ public class UsuarioController {
         return "The Canchita futbol club";
     }
 
+
     @PostMapping()
     public String addNewUser(@RequestBody UsuarioDto usuarioDto) { 
     	    	
+
     	Usuario usuario = new Usuario();
     	usuario.setNombreUsuario(usuarioDto.getNombre());
     	usuario.setEmail(usuarioDto.getEmail());
     	usuario.setTelefonoUsuario(usuarioDto.getTelefono());
     	usuario.setContraseñaUsuario(usuarioDto.getContraseña());
-    	
-    	
+
     	return service.addUser(usuario);
     }
 
@@ -79,11 +79,11 @@ public class UsuarioController {
         }
     }
     
+
     @PostMapping("/login")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
-    	
-    	
+   
     	 Authentication authentication = authenticationManager.authenticate(
     	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
     	        );
@@ -97,13 +97,11 @@ public class UsuarioController {
     	            
     	        } else {
     	            throw new UsernameNotFoundException("Invalid user request!");
-    	        }
-       
 
-    	
+    	        }
     }
     
-
+  
     @GetMapping()
     public List<UsuarioDto> getTodosUsuarios(){
     	List<Usuario> usuarios = this.service.todosLosUsuarios();
@@ -121,13 +119,8 @@ public class UsuarioController {
     }
     
 
-    
     @PutMapping("/{id}/rol/{rol}")
     public String actualizarEstadoUsuario(@PathVariable String id, @PathVariable String rol) {
     	return this.service.actualizarEstado(id, rol);
-    }
-    
-   
-    
-    
+    } 
 }

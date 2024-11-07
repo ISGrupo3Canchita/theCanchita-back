@@ -1,8 +1,10 @@
 package ar.edu.unq.grupo3.theCanchita.repository;
 
+
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +20,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario,String>{
 	
 	@EntityGraph(value = "UsuarioWithRoles")
 	Optional<Usuario> findWithRolesById(String id);
+
 }

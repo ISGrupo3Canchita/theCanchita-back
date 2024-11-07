@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ar.edu.unq.grupo3.theCanchita.dto.CanchaDto;
 import ar.edu.unq.grupo3.theCanchita.model.Cancha;
 import ar.edu.unq.grupo3.theCanchita.model.EstadoCancha;
@@ -26,9 +25,9 @@ public class CanchaController {
 	private CanchaService canchaService;
 	
 	
+
 	@PostMapping()
 	public String postCancha(@RequestBody CanchaDto canchaDto) {  
-		
 		Cancha cancha = new Cancha();	
 		cancha.setNombreCancha(canchaDto.getNombreCancha());
 		cancha.setDireccion(canchaDto.getDireccion());
@@ -42,7 +41,6 @@ public class CanchaController {
 		return this.canchaService.agregarCancha(cancha);
 	
 	}
-	
 	
 	
 	@GetMapping()
@@ -62,8 +60,6 @@ public class CanchaController {
 		return canchasDto;
 		
 	}
-	
-	
 	
 	@PutMapping("/{id}/estado/{estado}")
 	public String actualizarEstadoCancha(@PathVariable String id, @PathVariable String estado) {
@@ -115,6 +111,7 @@ public class CanchaController {
 		return canchasDto;
 		
 		
-	}
-	
+	  }
+  }
+
 }

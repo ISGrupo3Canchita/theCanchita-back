@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unq.grupo3.theCanchita.model.Cancha;
 import ar.edu.unq.grupo3.theCanchita.model.EstadoCancha;
 import ar.edu.unq.grupo3.theCanchita.repository.CanchaRepository;
@@ -20,11 +19,13 @@ public class CanchaService {
 	@Autowired
 	private EstadoCanchaRepository estadoCanchaRepository;
 		
+
 	@Transactional(readOnly = true)
 	public EstadoCancha obtenerEstadoCancha(Integer idEstado) {
 		return this.estadoCanchaRepository.findById(idEstado).get();
 	}
 	
+
 	@Transactional(readOnly = false)
 	public String agregarCancha(Cancha cancha) {
 		
@@ -34,6 +35,7 @@ public class CanchaService {
 		
 	}
 	
+
 	@Transactional(readOnly = true)
 	public List<Cancha> todasCanchasHabilitadas(){
 		return this.canchaRepository.findCanchasHabilitadas();
@@ -97,6 +99,5 @@ public class CanchaService {
 		
 		
 	}
-	
 	
 }

@@ -1,14 +1,19 @@
 package ar.edu.unq.grupo3.theCanchita.service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import ar.edu.unq.grupo3.theCanchita.dto.ReservaDto;
 import ar.edu.unq.grupo3.theCanchita.model.Rol;
 import ar.edu.unq.grupo3.theCanchita.model.Usuario;
 import ar.edu.unq.grupo3.theCanchita.model.UsuarioRol;
@@ -30,13 +35,12 @@ public class UsuarioService implements UserDetailsService {
 	@Autowired
 	private RolRepository rolRepository;
 
+
 	@Autowired
 	private PasswordEncoder encoder;
 
 	@Override
 	public UserInfoDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
-		
 		Usuario usuario = repository.findWithRolesByEmail(email); // **Asumimos que el username es el Email**
 		System.out.println(usuario.getEmail());
 		// Converting UserInfo to UserDetails
@@ -144,6 +148,4 @@ public class UsuarioService implements UserDetailsService {
 	  
 	  }
 	  
-	
-
 }

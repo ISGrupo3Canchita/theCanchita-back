@@ -3,6 +3,8 @@ package ar.edu.unq.grupo3.theCanchita.dto;
 import java.io.Serializable;
 
 
+
+
 public class UsuarioDto implements Serializable{
 	
 	/**
@@ -20,6 +22,7 @@ public class UsuarioDto implements Serializable{
 	private String rol;
 	private String token;
 	
+
 	
 	public UsuarioDto(String nombre, String email, String telefono, Integer cantidadReserva,
 			String contraseña, String id, String rol, String token) {

@@ -2,8 +2,6 @@ package ar.edu.unq.grupo3.theCanchita.model;
 
 
 import java.util.Set;
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -15,7 +13,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-
 @NamedEntityGraph(
 		name = "UsuarioWithRoles",
 		attributeNodes = {
@@ -29,6 +26,7 @@ import jakarta.persistence.Table;
 						attributeNodes = @NamedAttributeNode("rol"))
 				
 		})
+
 @Table(name = "usuario", schema = "canchitabs", indexes = {
 @Index(name = "indexUserInfoEmail", columnList = "email", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
 public class Usuario {
@@ -45,6 +43,7 @@ public class Usuario {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")	
 	private Set<UsuarioRol> usuariorol;
+
 
 	public String getId() {
 		return id;

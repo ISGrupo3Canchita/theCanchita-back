@@ -2,42 +2,48 @@ package ar.edu.unq.grupo3.theCanchita.model;
 
 
 import java.sql.Time;
+import java.util.Optional;
 import java.util.UUID;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.Table;
 
 @Entity
+@NamedEntityGraph(name = "ReservaWithUsuarioAndCanchaAndEstado", 
+	attributeNodes = { 
+			@NamedAttributeNode("usuario"),
+			@NamedAttributeNode("estadoreserva"),
+			@NamedAttributeNode("cancha"),
+			})
+
+
 @Table(name = "reserva", schema ="canchitabs")
 public class Reserva {
 	
 	@Id
-	private String id = UUID.randomUUID().toString();;
+	private String id = UUID.randomUUID().toString();
 	private Time inicioReserva;
 	private Time finReserva;
-	private String fechaReserva;
 	
-
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "idUsuario")
-	private Usuario Usuario;
-	
-	@ManyToOne( cascade = CascadeType.ALL)
-	@JoinColumn (name = "estadoReserva")
-	private EstadoReserva estadoreserva;
+	private Usuario usuario;
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCancha")
 	private Cancha cancha;
 	
+
+	@ManyToOne( cascade = CascadeType.ALL)
+	@JoinColumn (name = "idEstadoReserva")
+	private EstadoReserva estadoreserva;
 	
-
-
-
 	public String getId() {
 		return id;
 	}
@@ -47,11 +53,12 @@ public class Reserva {
 	}
 
 	public Usuario getUsuario() {
-		return Usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
-		Usuario = usuario;
+		this.usuario = usuario;
+
 	}
 
 	public Time getInicioReserva() {
@@ -86,13 +93,7 @@ public class Reserva {
 		this.cancha = cancha;
 	}
 	
-	public String getFechaReserva() {
-		return fechaReserva;
-	}
 
-	public void setFechaReserva(String fechaReserva) {
-		this.fechaReserva = fechaReserva;
-	}
 
 	
 	

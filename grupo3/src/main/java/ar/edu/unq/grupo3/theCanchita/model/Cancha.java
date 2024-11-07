@@ -1,7 +1,7 @@
 package ar.edu.unq.grupo3.theCanchita.model;
 
-import java.util.UUID;
 
+import java.util.UUID;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,6 +24,7 @@ import jakarta.persistence.JoinColumn;
 						name = "estado-subgraph",
 						attributeNodes = @NamedAttributeNode("nombreEstado"))
 		})
+
 @Table(name = "cancha", schema = "canchitabs")
 public class Cancha {
 	
@@ -39,8 +40,6 @@ public class Cancha {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idEstadoCancha")
 	private EstadoCancha estadoCancha;
-
-
 
 
 	public String getId() {
@@ -93,6 +92,4 @@ public class Cancha {
 		this.horarioCierre = horarioFin;
 	}
 
-	
-	
 }
