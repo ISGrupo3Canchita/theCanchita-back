@@ -19,4 +19,10 @@ public interface CanchaRepository extends JpaRepository<Cancha, String> {
 	@EntityGraph(value = "CanchaWithEstado")
 	Optional<Cancha> findWithEstadoById(String id);
 	
+	Optional<Cancha> findByNombreCancha(String nombre);
+	
+	Optional<Cancha> findByDireccion(String direccion);
+	
+	@Query("SELECT c FROM Cancha c WHERE c.estadoCancha.id = :estado")
+	List<Cancha> findEstado(Integer estado);
 }

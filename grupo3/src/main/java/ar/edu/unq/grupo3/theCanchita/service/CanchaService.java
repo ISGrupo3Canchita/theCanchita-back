@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.grupo3.theCanchita.model.Cancha;
 import ar.edu.unq.grupo3.theCanchita.model.EstadoCancha;
 import ar.edu.unq.grupo3.theCanchita.repository.CanchaRepository;
 import ar.edu.unq.grupo3.theCanchita.repository.EstadoCanchaRepository;
-import jakarta.transaction.Transactional;
 
 @Service
 public class CanchaService {
@@ -20,11 +20,12 @@ public class CanchaService {
 	@Autowired
 	private EstadoCanchaRepository estadoCanchaRepository;
 		
-	
+	@Transactional(readOnly = true)
 	public EstadoCancha obtenerEstadoCancha(Integer idEstado) {
 		return this.estadoCanchaRepository.findById(idEstado).get();
 	}
 	
+	@Transactional(readOnly = false)
 	public String agregarCancha(Cancha cancha) {
 		
 		this.canchaRepository.save(cancha);
@@ -33,25 +34,19 @@ public class CanchaService {
 		
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Cancha> todasCanchasHabilitadas(){
 		return this.canchaRepository.findCanchasHabilitadas();
 	}
 	
-	public String actualizarEstadoCancha(String id, String rol) {
+	
+	@Transactional(readOnly = false)
+	public String actualizarEstadoCancha(String id, String estadoCancha) {
 		try {
-			/*
-		Cancha cancha = this.canchaRepository.findById(id).get();
-		EstadoCancha estadoEliminado = this.estadoCanchaRepository.findById(3).get();
-		cancha.setEstadoCancha(estadoEliminado);
-		this.canchaRepository.save(cancha);
-		
-		return "Se ha eliminado con éxtio";
-		*/
-			
+	
 		Cancha cancha = this.canchaRepository.findWithEstadoById(id).get();
 		
-		EstadoCancha estado = this.estadoCanchaRepository.findByNombreEstado(rol);
+		EstadoCancha estado = this.estadoCanchaRepository.findByNombreEstado(estadoCancha);
 		
 		cancha.setEstadoCancha(estado);
 		
@@ -59,8 +54,7 @@ public class CanchaService {
 		
 		return "Actualizada Con Exito ";
 		
-		
-			
+	
 		}
 		
 		catch(Exception e){
@@ -68,9 +62,41 @@ public class CanchaService {
 			 return e.toString();
 		}
 		
+	}
+	
+	@Transactional(readOnly = true)
+	public Cancha canchaPorNombre(String nombre) {
+		return this.canchaRepository.findByNombreCancha(nombre).get();
+	}
+	
+	@Transactional(readOnly = true)
+	public Cancha canchaPorId(String id) {
+		return this.canchaRepository.findById(id).get();
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public Cancha canchaPorDireccion(String direccion) {
+		return this.canchaRepository.findByDireccion(direccion).get();
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public List<Cancha> canchaPorEstado(String estado){
+		if(estado.equals("Habilitada")) {
+			return this.canchaRepository.findEstado(1);
+		}
 		
+		else if(estado.equals("Deshabilitada")) {
+			return this.canchaRepository.findEstado(2);
+		}
 		
+		else {
+			return this.canchaRepository.findEstado(3);
+		}
 		
 		
 	}
+	
+	
 }

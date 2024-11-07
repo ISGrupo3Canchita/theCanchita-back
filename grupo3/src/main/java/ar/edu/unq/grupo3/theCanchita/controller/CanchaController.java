@@ -71,5 +71,50 @@ public class CanchaController {
 	}
 	
 	
+	@GetMapping("/nombre/{nombre}")
+	public CanchaDto traerPorNombre(@PathVariable String nombre) {
+		Cancha cancha = this.canchaService.canchaPorNombre(nombre);
+		CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
+											cancha.getEstadoCancha().getNombreEstado());
+		
+		return canchaDto;
+	}
+	
+	@GetMapping("/id/{id}")
+	public CanchaDto traerPorId(@PathVariable String id) {
+		Cancha cancha = this.canchaService.canchaPorId(id);
+		CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
+				cancha.getEstadoCancha().getNombreEstado());
+		
+		return canchaDto;
+	}
+	
+	@GetMapping("/direccion/{direccion}")
+	public CanchaDto traerPorDireccion(@PathVariable String direccion) {
+		Cancha cancha = this.canchaService.canchaPorDireccion(direccion);
+		CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
+				cancha.getEstadoCancha().getNombreEstado());
+		
+		return canchaDto;
+		
+	}
+	
+	@GetMapping("/estado/{estado}")
+	public List<CanchaDto> todasLasCanchasDeEstado(@PathVariable String estado){
+		List<Cancha> canchas = this.canchaService.canchaPorEstado(estado);
+		
+		List<CanchaDto> canchasDto = new ArrayList<CanchaDto>();
+		
+		
+		canchas.forEach(cancha -> {
+			CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(),
+									  	cancha.getHorarioInicio(), cancha.getHorarioCierre(), cancha.getEstadoCancha().getNombreEstado());
+			canchasDto.add(canchaDto);
+		});
+		
+		return canchasDto;
+		
+		
+	}
 	
 }

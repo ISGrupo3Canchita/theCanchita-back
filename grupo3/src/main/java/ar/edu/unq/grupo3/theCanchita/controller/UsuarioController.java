@@ -127,8 +127,7 @@ public class UsuarioController {
     	return this.service.actualizarEstado(id, rol);
     }
     
-    
- 
+   
     
     
 }
