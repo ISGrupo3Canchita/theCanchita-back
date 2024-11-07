@@ -10,11 +10,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ar.edu.unq.grupo3.theCanchita.dto.UsuarioDto;
 import ar.edu.unq.grupo3.theCanchita.model.Usuario;
 import ar.edu.unq.grupo3.theCanchita.request.AuthRequest;
@@ -23,7 +24,7 @@ import ar.edu.unq.grupo3.theCanchita.service.JwtService;
 import ar.edu.unq.grupo3.theCanchita.service.UsuarioService;
 
 @RestController
-@RequestMapping("/theCanchita")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 	
 	@Autowired
@@ -41,11 +42,10 @@ public class UsuarioController {
     }
 
 
-    @PostMapping("/add/usuario")
+    @PostMapping()
     public String addNewUser(@RequestBody UsuarioDto usuarioDto) { 
-    	
-    	System.out.println(usuarioDto);
-    	
+    	    	
+
     	Usuario usuario = new Usuario();
     	usuario.setNombreUsuario(usuarioDto.getNombre());
     	usuario.setEmail(usuarioDto.getEmail());
@@ -79,9 +79,11 @@ public class UsuarioController {
         }
     }
     
-    @PostMapping("/post/usuario/")
+
+    @PostMapping("/login")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
+   
     	 Authentication authentication = authenticationManager.authenticate(
     	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
     	        );
@@ -95,10 +97,12 @@ public class UsuarioController {
     	            
     	        } else {
     	            throw new UsernameNotFoundException("Invalid user request!");
-    	        } 
-    }
 
-    @GetMapping("/get/lista/usuarios")
+    	        }
+    }
+    
+  
+    @GetMapping()
     public List<UsuarioDto> getTodosUsuarios(){
     	List<Usuario> usuarios = this.service.todosLosUsuarios();
     	List<UsuarioDto> usuariosDto = new ArrayList<UsuarioDto>();
@@ -114,4 +118,9 @@ public class UsuarioController {
     	return usuariosDto;
     }
     
+
+    @PutMapping("/{id}/rol/{rol}")
+    public String actualizarEstadoUsuario(@PathVariable String id, @PathVariable String rol) {
+    	return this.service.actualizarEstado(id, rol);
+    } 
 }

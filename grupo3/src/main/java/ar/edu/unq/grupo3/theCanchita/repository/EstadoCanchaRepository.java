@@ -7,6 +7,8 @@ import ar.edu.unq.grupo3.theCanchita.model.EstadoCancha;
 
 @Repository
 public interface EstadoCanchaRepository extends JpaRepository<EstadoCancha, Integer> {
-	
+
+	EstadoCancha findByNombreEstado(String nombre);
+
 	
 }

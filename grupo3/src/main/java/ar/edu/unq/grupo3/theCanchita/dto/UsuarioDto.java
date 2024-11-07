@@ -2,7 +2,8 @@ package ar.edu.unq.grupo3.theCanchita.dto;
 
 import java.io.Serializable;
 
-import ar.edu.unq.grupo3.theCanchita.security.UserInfoDetails;
+
+
 
 public class UsuarioDto implements Serializable{
 	
@@ -21,18 +22,7 @@ public class UsuarioDto implements Serializable{
 	private String rol;
 	private String token;
 	
-	/*
-	public UsuarioDto(UserInfoDetails usuario, String token, String rol) {
-		this.nombre = usuario.getNombre();
-		this.email = usuario.getEmail();
-		this.telefono = usuario.getTelefono();
-		this.cantidadReserva = usuario.getCantidad_Reserva();
-		this.contraseña = usuario.getContraseña();
-		this.id = usuario.getId();
-		this.token = token;
-		this.rol = rol;
-	}
-	*/
+
 	
 	public UsuarioDto(String nombre, String email, String telefono, Integer cantidadReserva,
 			String contraseña, String id, String rol, String token) {

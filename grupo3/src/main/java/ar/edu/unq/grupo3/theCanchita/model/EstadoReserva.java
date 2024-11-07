@@ -11,7 +11,9 @@ public class EstadoReserva {
 	@Id
 	private Integer id;
 	private String nombreEstado;
+
 	private String descripcionEstado;
+
 	
 	public Integer getId() {
 		return id;
@@ -26,9 +28,11 @@ public class EstadoReserva {
 		this.nombreEstado = nombreEstado;
 	}
 	public String getDescripcion() {
+
 		return descripcionEstado;
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcionEstado = descripcion;
+
 	}
 }

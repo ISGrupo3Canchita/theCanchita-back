@@ -21,6 +21,7 @@ import jakarta.persistence.Table;
 			@NamedAttributeNode("cancha"),
 			})
 
+
 @Table(name = "reserva", schema ="canchitabs")
 public class Reserva {
 	
@@ -32,17 +33,18 @@ public class Reserva {
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCancha")
 	private Cancha cancha;
 	
+
 	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn (name = "idEstadoReserva")
 	private EstadoReserva estadoreserva;
 	
 	public String getId() {
-
 		return id;
 	}
 
@@ -56,6 +58,7 @@ public class Reserva {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+
 	}
 
 	public Time getInicioReserva() {
@@ -90,6 +93,8 @@ public class Reserva {
 		this.cancha = cancha;
 	}
 	
+
+
 	
 	
 }

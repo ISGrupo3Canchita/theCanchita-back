@@ -6,11 +6,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.NamedSubgraph;
+import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@NamedEntityGraph(
+		name = "UsuarioWithRoles",
+		attributeNodes = {
+				@NamedAttributeNode("usuariorol"),
+				@NamedAttributeNode(value = "usuariorol", subgraph = "roles-subgraph")
+				
+		},
+		subgraphs = {
+				@NamedSubgraph(
+						name = "roles-subgraph",
+						attributeNodes = @NamedAttributeNode("rol"))
+				
+		})
+
 @Table(name = "usuario", schema = "canchitabs", indexes = {
 @Index(name = "indexUserInfoEmail", columnList = "email", unique = true) }) //genera un indice en la columna mail que no acepta dublicado
 public class Usuario {
@@ -23,12 +39,11 @@ public class Usuario {
 	private String telefonoUsuario;
 	private Integer cantidadReserva;
 	
+	
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")	
 	private Set<UsuarioRol> usuariorol;
-	
-//	@OneToMany(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "idUsuario" )
-//	private Set<Reserva> reserva;
+
 
 	public String getId() {
 		return id;

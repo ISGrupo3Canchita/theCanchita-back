@@ -4,14 +4,27 @@ import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.NamedSubgraph;
 import jakarta.persistence.Table;
 
 @Entity
+@NamedEntityGraph(name = "usuarioRolWithUsuario",
+attributeNodes = {
+		@NamedAttributeNode("usuario"),
+		@NamedAttributeNode(value = "usuario", subgraph = "usuario-subgraph")
+	},
+	subgraphs = {
+			@NamedSubgraph(
+					name = "usuario-subgraph",
+					attributeNodes = @NamedAttributeNode("usuariorol"))
+	})
+
+
 @Table(name="usuariorol", schema="canchitabs")
 public class UsuarioRol {
 	
