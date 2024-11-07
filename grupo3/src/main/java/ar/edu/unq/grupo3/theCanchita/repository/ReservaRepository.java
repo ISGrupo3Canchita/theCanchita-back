@@ -15,6 +15,7 @@ import java.util.Optional;
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, String> {
 
+	
 	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado" )
 	public List<Reserva> findWithUsuarioAndCanchaAndEstadoByUsuario(Usuario usuario);
 	
@@ -26,7 +27,5 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 	
 	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado")
 	public Optional<Reserva> findWithUsuarioAndCanchaAndEstadoById(String Id);
-	
-	
 	
 }
