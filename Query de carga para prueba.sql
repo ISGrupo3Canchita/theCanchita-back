@@ -25,4 +25,6 @@
 #	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservauno', 'usuariouno', 'canchauno', 3, '11:00:00','12:00:00' );
 #	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservados', 'usuariouno', 'canchados', 1, '8:00:00','9:00:00' );
 #	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservatres', 'usuariouno', 'canchatres', 3, '13:00:00','14:00:00' );
+#	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservacuatro', 'usuariouno', 'canchauno', 2, '15:00:00','16:00:00' );
+#   INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservacinco', 'usuariouno', 'canchados', 4, '10:00:00','11:00:00' );
 
