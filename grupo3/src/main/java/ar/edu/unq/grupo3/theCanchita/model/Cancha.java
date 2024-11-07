@@ -17,7 +17,7 @@ import jakarta.persistence.JoinColumn;
 public class Cancha {
 	
 	@Id
-	private String id = UUID.randomUUID().toString();;
+	private String id = UUID.randomUUID().toString();
 	private String nombreCancha;
 	private String direccion;
 	private String horarioInicio;
@@ -82,7 +82,4 @@ public class Cancha {
 	public void setHorarioFin(String horarioFin) {
 		this.horarioCierre = horarioFin;
 	}
-
-	
-	
 }

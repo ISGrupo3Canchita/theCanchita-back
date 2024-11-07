@@ -81,27 +81,15 @@ public class ReservaService {
 		return repository.findWithUsuarioAndCanchaAndEstadoById(id).get();
 	}
 	
-	@Transactional(readOnly = true)
+	@Transactional
 	public void actualizarEstado(String idReserva, String estadoReserva) {
 		
 		Reserva reserva = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
 		
-
-		System.out.println("ID RESERVA: "+reserva.getId()+" ESTADO: "+reserva.getEstadoreserva().getNombreEstado() );
-		
-		EstadoReserva nuevoEstado= new EstadoReserva();
-		System.out.println("Estado despues de crearlo"+nuevoEstado.getNombreEstado() );
-		nuevoEstado = this.estadoReservaRepository.findByNombreEstado(estadoReserva).get(0);
-		System.out.println("Estado despues cargarlo:  "+nuevoEstado.getNombreEstado() );
-
+		EstadoReserva nuevoEstado = this.estadoReservaRepository.findByNombreEstado(estadoReserva).get(0);
 		reserva.setEstadoreserva(nuevoEstado);
-		System.out.println("RESERVA CON EL ESTADO CAMBIADO / ID RESERVA: "+reserva.getId()+" ESTADO: "+reserva.getEstadoreserva().getNombreEstado() );
 		
 		repository.save(reserva);
-		
-		Reserva reserva2 = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
-		System.out.println("RESERVA CON EL ESTADO CAMBIADO / ID RESERVA: "+reserva2.getId()+" ESTADO: "+reserva2.getEstadoreserva().getNombreEstado() );
-		
 	}
 }
  

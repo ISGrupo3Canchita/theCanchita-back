@@ -52,7 +52,7 @@ public class SecurityConfig {
                 		"reserva/get/reservaparausuario/**",
                 		"reserva/get/reservaporcancha/**",
                 		"reserva/get/reservaporestado/**",
-                		"reserva/post/actualizarestado"
+                		"reserva/post/actualizaestado"
                 		).permitAll()
 
                 .anyRequest().authenticated() // Protect all other endpoints

@@ -98,7 +98,7 @@ public class ReservaController {
 	
 	@PostMapping(path ="post/actualizaestado")
 	public String  cambioEstadoReserva(@RequestBody ReservaRequest reservaRequest ) {
-		
+		System.out.println("Estoy en el controller");
 		this.reservaServicio.actualizarEstado(reservaRequest.getId(),reservaRequest.getEstadoreserva());
 		
 		return "Actualiado";
