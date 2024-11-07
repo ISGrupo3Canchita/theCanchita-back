@@ -58,25 +58,26 @@ CREATE TABLE canchitabs.reserva(
         idCancha VARCHAR(144) NOT NULL,
         idEstadoReserva INT NOT NULL,
         inicioReserva TIME NOT NULL,
-        finRserva TIME NOT NULL,
+        finReserva TIME NOT NULL,
         CONSTRAINT FK_UsuarioReserva FOREIGN KEY (idUsuario) REFERENCES usuario(id),
-        CONSTRAINT FK_CancahReserva FOREIGN KEY (idCancha) REFERENCES cancha(id),
+        CONSTRAINT FK_CanchaReserva FOREIGN KEY (idCancha) REFERENCES cancha(id),
         CONSTRAINT FK_ReservaEstado FOREIGN KEY (idEstadoReserva) REFERENCES estadoReserva(id),
         PRIMARY KEY (id)
     );
 
-INSERT INTO canchitabs.rol (id, nombre, descripcion) VALUES ('3','Usuario', 'Habilitado a reservar canchas')
-insert into canchitabs.rol(id, nombre, descripcion) values ('2', 'Operador','Habilitada la opcion de aceptar o rechazar una reserva')
-insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador','Habilitada la gestion de la aplicacion')
-select * from canchitabs.rol
+INSERT INTO canchitabs.rol (id, nombre, descripcion) VALUES ('3','Usuario', 'Habilitado a reservar canchas');
+insert into canchitabs.rol(id, nombre, descripcion) values ('2', 'Operador','Habilitada la opcion de aceptar o rechazar una reserva');
+insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador','Habilitada la gestion de la aplicacion');
+#select * from canchitabs.rol
 
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 1 , 'Habilitada', 'La cancha está disponible para su uso'); 
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 2 ,'Deshabilitada', 'La cancha no está disponible para su uso');
-select * from canchitabs.estadocancha 
+#	select * from canchitabs.estadocancha;
 
 
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 1 , 'Reservada', 'El usuario reservó la cancha en el horario dado');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 2 , 'Finalizada', 'La reserva en el horario dado finalizó');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 3 , 'Pendiente', 'La reserva del usuario aún no está Reservada');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 4 , 'Cancelada', 'La reserva del usuario fué cancelada por el Usuario o por el Operador');
-select * from canchitabs.estadoreserva 
+#	select * from canchitabs.estadoreserva 
+
