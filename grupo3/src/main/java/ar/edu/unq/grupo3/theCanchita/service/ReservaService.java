@@ -76,7 +76,7 @@ public class ReservaService {
 		return reservas;
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public Reserva reservaPorId(String id) {
 		return repository.findWithUsuarioAndCanchaAndEstadoById(id).get();
 	}
