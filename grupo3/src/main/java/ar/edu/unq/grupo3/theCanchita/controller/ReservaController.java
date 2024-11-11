@@ -56,10 +56,10 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/get/reservaparausuario/{idUsuario}")
+	@GetMapping(path ="/get/reservaparausuario/{email}")
 	@ResponseBody
-	public ResponseEntity<List<ReservaDto>> reservasParaUsuario(@PathVariable String idUsuario){
-		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(idUsuario);
+	public ResponseEntity<List<ReservaDto>> reservasParaUsuario(@PathVariable String email){
+		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(email);
 		List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
 		
 		List<Reserva>reservasFiltradas = reservas.stream()
@@ -96,10 +96,10 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@PostMapping(path ="post/actualizaestado")
-	public String  cambioEstadoReserva(@RequestBody ReservaRequest reservaRequest ) {
-		System.out.println("Estoy en el controller");
-		this.reservaServicio.actualizarEstado(reservaRequest.getId(),reservaRequest.getEstadoreserva());
+	@PostMapping(path ="/{idReserva}/estado/{nuevoEstado}")
+	public String  cambioEstadoReserva(@PathVariable String nuevoEstado, @PathVariable String idReserva ) {
+		
+		this.reservaServicio.actualizarEstado(idReserva,nuevoEstado);
 		
 		return "Actualiado";
 	}

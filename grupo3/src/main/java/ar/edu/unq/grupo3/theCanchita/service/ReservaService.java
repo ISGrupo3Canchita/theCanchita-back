@@ -50,8 +50,9 @@ public class ReservaService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Reserva> reservasPoridUsuario(String idUsuario) {
-		List<Reserva> reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByUsuario(usuarioRepository.findById(idUsuario).get());
+	public List<Reserva> reservasPoridUsuario(String idemail) {
+		
+		List<Reserva> reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByUsuario(usuarioRepository.findByEmail(idemail).get());
 		return reservas;
 	}
 	
