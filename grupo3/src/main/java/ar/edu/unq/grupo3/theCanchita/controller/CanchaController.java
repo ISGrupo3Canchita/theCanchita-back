@@ -52,7 +52,7 @@ public class CanchaController {
 		String estado = this.canchaService.obtenerEstadoCancha(1).getNombreEstado();
 		
 		canchasHab.forEach(cancha -> {
-			CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(),
+			CanchaDto canchaDto = new CanchaDto(cancha.getId(), cancha.getNombreCancha(), cancha.getDireccion(),
 									  	cancha.getHorarioInicio(), cancha.getHorarioCierre(), estado);
 			canchasDto.add(canchaDto);
 		});
@@ -70,7 +70,7 @@ public class CanchaController {
 	@GetMapping("/nombre/{nombre}")
 	public CanchaDto traerPorNombre(@PathVariable String nombre) {
 		Cancha cancha = this.canchaService.canchaPorNombre(nombre);
-		CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
+		CanchaDto canchaDto = new CanchaDto(cancha.getId(), cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
 											cancha.getEstadoCancha().getNombreEstado());
 		
 		return canchaDto;
@@ -79,7 +79,7 @@ public class CanchaController {
 	@GetMapping("/id/{id}")
 	public CanchaDto traerPorId(@PathVariable String id) {
 		Cancha cancha = this.canchaService.canchaPorId(id);
-		CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
+		CanchaDto canchaDto = new CanchaDto(cancha.getId(), cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
 				cancha.getEstadoCancha().getNombreEstado());
 		
 		return canchaDto;
@@ -88,7 +88,7 @@ public class CanchaController {
 	@GetMapping("/direccion/{direccion}")
 	public CanchaDto traerPorDireccion(@PathVariable String direccion) {
 		Cancha cancha = this.canchaService.canchaPorDireccion(direccion);
-		CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
+		CanchaDto canchaDto = new CanchaDto(cancha.getId(), cancha.getNombreCancha(), cancha.getDireccion(), cancha.getHorarioInicio(), cancha.getHorarioCierre(),
 				cancha.getEstadoCancha().getNombreEstado());
 		
 		return canchaDto;
@@ -103,7 +103,7 @@ public class CanchaController {
 		
 		
 		canchas.forEach(cancha -> {
-			CanchaDto canchaDto = new CanchaDto(cancha.getNombreCancha(), cancha.getDireccion(),
+			CanchaDto canchaDto = new CanchaDto(cancha.getId(), cancha.getNombreCancha(), cancha.getDireccion(),
 									  	cancha.getHorarioInicio(), cancha.getHorarioCierre(), cancha.getEstadoCancha().getNombreEstado());
 			canchasDto.add(canchaDto);
 		});

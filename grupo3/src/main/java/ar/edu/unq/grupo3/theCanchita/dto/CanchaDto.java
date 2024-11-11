@@ -2,7 +2,7 @@ package ar.edu.unq.grupo3.theCanchita.dto;
 
 public class CanchaDto {
 	
-	
+	private String id;
 	private String nombreCancha;
 	private String direccion;
 	private String horarioInicio;
@@ -10,7 +10,8 @@ public class CanchaDto {
 	private String estado;
 	
 	
-	public CanchaDto(String nombre, String direcc, String horarioIni, String horarioFin, String estadoCancha) {
+	public CanchaDto(String id, String nombre, String direcc, String horarioIni, String horarioFin, String estadoCancha) {
+		this.id = id;
 		this.nombreCancha = nombre;
 		this.direccion = direcc;
 		this.horarioInicio = horarioIni;
@@ -18,9 +19,17 @@ public class CanchaDto {
 		this.estado = estadoCancha;
 	}
 	
+
 	
-	
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 	public String getNombreCancha() {
 		return nombreCancha;
 	}
