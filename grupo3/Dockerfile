@@ -1,14 +1,14 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM maven:3.9.9-ibm-semeru-23-jammy
 
 WORKDIR /app
 
 COPY pom.xml .
 
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
-COPY src./src
+COPY src ./src
 
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
