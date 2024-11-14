@@ -1,5 +1,6 @@
 package ar.edu.unq.grupo3.theCanchita.service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +29,18 @@ public class ReservaService {
 	private CanchaRepository canchaRepository;
 
 	public String agregarReserva(ReservaDto nuevaReserva) {
+		LocalTime inicio = nuevaReserva.getInicioReserva();
+	    LocalTime fin = nuevaReserva.getFinReserva();
+	    Cancha canchaComprobacion = canchaRepository.findById(nuevaReserva.getIdCancha()).get();
+
+	    List<Reserva> reservasOcupadas = repository.findReservasOcupadas(canchaComprobacion, inicio, fin);
+	    if (!reservasOcupadas.isEmpty()) {
+	       return ("El horario ya está reservado.");
+	    }
+	    
+	    else {
+		
+		
 		String uuid = UUID.randomUUID().toString();
 		EstadoReserva estadoReserva = estadoReservaRepository.findById(3).get();
 		Usuario usuario = (usuarioRepository.findById(nuevaReserva.getIdUsuario())).get();
@@ -41,6 +54,7 @@ public class ReservaService {
 		reserva.setFinReserva(nuevaReserva.getFinReserva());
 		this.repository.save(reserva);
 		return "Reserva Guardada";
+	}
 	}
 	
 	@Transactional(readOnly = true)

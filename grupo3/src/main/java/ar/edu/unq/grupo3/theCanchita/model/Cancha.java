@@ -1,6 +1,7 @@
 package ar.edu.unq.grupo3.theCanchita.model;
 
 
+import java.time.LocalTime;
 import java.util.UUID;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -32,8 +33,8 @@ public class Cancha {
 	private String id = UUID.randomUUID().toString();;
 	private String nombreCancha;
 	private String direccion;
-	private String horarioInicio;
-	private String horarioCierre;
+	private LocalTime horarioInicio;
+	private LocalTime horarioCierre;
 	
 	
 
@@ -76,19 +77,19 @@ public class Cancha {
 		this.estadoCancha = estadoCancha;
 	}
 	
-	public String getHorarioInicio() {
+	public LocalTime getHorarioInicio() {
 		return horarioInicio;
 	}
 
-	public void setHorarioInicio(String horarioInicio) {
+	public void setHorarioInicio(LocalTime horarioInicio) {
 		this.horarioInicio = horarioInicio;
 	}
 
-	public String getHorarioCierre() {
+	public LocalTime getHorarioCierre() {
 		return horarioCierre;
 	}
 
-	public void setHorarioFin(String horarioFin) {
+	public void setHorarioFin(LocalTime horarioFin) {
 		this.horarioCierre = horarioFin;
 	}
 

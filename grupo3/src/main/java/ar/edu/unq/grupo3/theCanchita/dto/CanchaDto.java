@@ -1,16 +1,18 @@
 package ar.edu.unq.grupo3.theCanchita.dto;
 
+import java.time.LocalTime;
+
 public class CanchaDto {
 	
 	private String id;
 	private String nombreCancha;
 	private String direccion;
-	private String horarioInicio;
-	private String horarioFin;
+	private LocalTime horarioInicio;
+	private LocalTime horarioFin;
 	private String estado;
 	
 	
-	public CanchaDto(String id, String nombre, String direcc, String horarioIni, String horarioFin, String estadoCancha) {
+	public CanchaDto(String id, String nombre, String direcc, LocalTime horarioIni, LocalTime horarioFin, String estadoCancha) {
 		this.id = id;
 		this.nombreCancha = nombre;
 		this.direccion = direcc;
@@ -42,16 +44,16 @@ public class CanchaDto {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getHorarioInicio() {
+	public LocalTime getHorarioInicio() {
 		return horarioInicio;
 	}
-	public void setHorarioInicio(String horarioInicio) {
+	public void setHorarioInicio(LocalTime horarioInicio) {
 		this.horarioInicio = horarioInicio;
 	}
-	public String getHorarioFin() {
+	public LocalTime getHorarioFin() {
 		return horarioFin;
 	}
-	public void setHorarioFin(String horarioFin) {
+	public void setHorarioFin(LocalTime horarioFin) {
 		this.horarioFin = horarioFin;
 	}
 	public String getEstado() {
