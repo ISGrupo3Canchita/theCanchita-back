@@ -34,7 +34,7 @@ public class ReservaController {
 		return this.reservaServicio.agregarReserva(nuevaReserva);
 	}
 	
-	@GetMapping(path = "/reservastodas")
+	@GetMapping(path = "")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> todasReservas(){
 	List<Reserva> reservas = this.reservaServicio.todasLasReservas();
@@ -46,7 +46,7 @@ public class ReservaController {
 	return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/reservatodasporusuario/{idUsuario}")
+	@GetMapping(path ="/all/usuario/{idUsuario}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorUsuario(@PathVariable String idUsuario){
 		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(idUsuario);
@@ -58,7 +58,7 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/reservaparausuario/{email}")
+	@GetMapping(path ="/email/{email}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasParaUsuario(@PathVariable String email){
 		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(email);
@@ -75,7 +75,7 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping (path = "/reservaporcancha/{idCancha}")
+	@GetMapping (path = "/cancha/{idCancha}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorCancha(@PathVariable String idCancha){
 		List<Reserva> reservas = this.reservaServicio.reservasPorIdCancha(idCancha);
@@ -86,7 +86,7 @@ public class ReservaController {
 		});
 		return ResponseEntity.ok(reservasDtos);
 	}
-	@GetMapping (path = "/reservaporestado/{estado}")
+	@GetMapping (path = "/estado/{estado}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorEstado(@PathVariable String estadoReserva){
 		List<Reserva> reservas =this.reservaServicio.reservasPorEstado(estadoReserva);
