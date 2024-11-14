@@ -2,6 +2,7 @@ package ar.edu.unq.grupo3.theCanchita.dto;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.time.LocalTime;
 
 import ar.edu.unq.grupo3.theCanchita.model.Reserva;
 
@@ -18,8 +19,8 @@ public class ReservaDto implements Serializable {
 	private String idCancha;
 	private String nombreCancha;
 	private String estadoreserva;
-	private Time inicioReserva;
-	private Time finReserva;
+	private LocalTime inicioReserva;
+	private LocalTime finReserva;
 
 	//----------------------Constructores
 	public ReservaDto(Reserva reserva) {
@@ -31,6 +32,8 @@ public class ReservaDto implements Serializable {
 		this.inicioReserva = reserva.getInicioReserva();
 		this.finReserva = reserva.getFinReserva();	
 	}
+	
+	public ReservaDto() {}
 
 //	-----------------------Setter and Getter
 	
@@ -67,16 +70,16 @@ public class ReservaDto implements Serializable {
 	public void setEstadoreserva(String estadoreserva) {
 		this.estadoreserva = estadoreserva;
 	}
-	public Time getInicioReserva() {
+	public LocalTime getInicioReserva() {
 		return inicioReserva;
 	}
-	public void setInicioReserva(Time inicioReserva) {
+	public void setInicioReserva(LocalTime inicioReserva) {
 		this.inicioReserva = inicioReserva;
 	}
-	public Time getFinReserva() {
+	public LocalTime getFinReserva() {
 		return finReserva;
 	}
-	public void setFinReserva(Time finReserva) {
+	public void setFinReserva(LocalTime finReserva) {
 		this.finReserva = finReserva;
 	}
 

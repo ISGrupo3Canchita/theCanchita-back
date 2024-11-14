@@ -2,6 +2,7 @@ package ar.edu.unq.grupo3.theCanchita.model;
 
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.UUID;
 import jakarta.persistence.CascadeType;
@@ -27,8 +28,8 @@ public class Reserva {
 	
 	@Id
 	private String id = UUID.randomUUID().toString();
-	private Time inicioReserva;
-	private Time finReserva;
+	private LocalTime inicioReserva;
+	private LocalTime finReserva;
 	
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "idUsuario")
@@ -61,19 +62,19 @@ public class Reserva {
 
 	}
 
-	public Time getInicioReserva() {
+	public LocalTime getInicioReserva() {
 		return inicioReserva;
 	}
 
-	public void setInicioReserva(Time inicioReserva) {
+	public void setInicioReserva(LocalTime inicioReserva) {
 		this.inicioReserva = inicioReserva;
 	}
 
-	public Time getFinReserva() {
+	public LocalTime getFinReserva() {
 		return finReserva;
 	}
 
-	public void setFinReserva(Time finReserva) {
+	public void setFinReserva(LocalTime finReserva) {
 		this.finReserva = finReserva;
 	}
 
