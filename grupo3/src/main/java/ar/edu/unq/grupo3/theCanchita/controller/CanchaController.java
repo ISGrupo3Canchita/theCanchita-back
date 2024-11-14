@@ -24,8 +24,6 @@ public class CanchaController {
 	@Autowired
 	private CanchaService canchaService;
 	
-	
-
 	@PostMapping()
 	public String postCancha(@RequestBody CanchaDto canchaDto) {  
 		Cancha cancha = new Cancha();	
@@ -39,9 +37,7 @@ public class CanchaController {
 		cancha.setEstadoCancha(estado);
 		
 		return this.canchaService.agregarCancha(cancha);
-	
 	}
-	
 	
 	@GetMapping()
 	public List<CanchaDto> getCanchasHabilitadas(){

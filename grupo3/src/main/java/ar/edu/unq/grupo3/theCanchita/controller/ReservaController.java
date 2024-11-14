@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,18 +34,19 @@ public class ReservaController {
 		return this.reservaServicio.agregarReserva(nuevaReserva);
 	}
 	
-	@GetMapping("/get/reservastodas")
-	public List<ReservaDto> todasReservas(){
+	@GetMapping(path = "/reservastodas")
+	@ResponseBody
+	public ResponseEntity<List<ReservaDto>> todasReservas(){
 	List<Reserva> reservas = this.reservaServicio.todasLasReservas();
 	List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
 	reservas.forEach(reserva -> {
 		ReservaDto reservaDto = new ReservaDto(reserva);
 		reservasDtos.add(reservaDto);
 	});
-	return reservasDtos;
+	return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/get/reservatodasporusuario/{idUsuario}")
+	@GetMapping(path ="/reservatodasporusuario/{idUsuario}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorUsuario(@PathVariable String idUsuario){
 		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(idUsuario);
@@ -56,7 +58,7 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/get/reservaparausuario/{email}")
+	@GetMapping(path ="/reservaparausuario/{email}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasParaUsuario(@PathVariable String email){
 		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(email);
@@ -73,7 +75,7 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping (path = "/get/reservaporcancha/{idCancha}")
+	@GetMapping (path = "/reservaporcancha/{idCancha}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorCancha(@PathVariable String idCancha){
 		List<Reserva> reservas = this.reservaServicio.reservasPorIdCancha(idCancha);
@@ -84,7 +86,7 @@ public class ReservaController {
 		});
 		return ResponseEntity.ok(reservasDtos);
 	}
-	@GetMapping (path = "/get/reservaporestado/{estado}")
+	@GetMapping (path = "/reservaporestado/{estado}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorEstado(@PathVariable String estadoReserva){
 		List<Reserva> reservas =this.reservaServicio.reservasPorEstado(estadoReserva);
@@ -96,12 +98,10 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@PostMapping(path ="/{idReserva}/estado/{nuevoEstado}")
-	public String  cambioEstadoReserva(@PathVariable String nuevoEstado, @PathVariable String idReserva ) {
-		
+	@PutMapping("/{idReserva}/estado/{nuevoEstado}")
+	public String  cambioEstadoReservaPut( @PathVariable String idReserva,@PathVariable String nuevoEstado ) {
 		this.reservaServicio.actualizarEstado(idReserva,nuevoEstado);
 		
-		return "Actualiado";
-	}
-	
+		return "Actualizado";
+	}	
 }
