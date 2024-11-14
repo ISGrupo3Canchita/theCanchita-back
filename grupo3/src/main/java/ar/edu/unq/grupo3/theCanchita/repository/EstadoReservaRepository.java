@@ -11,6 +11,9 @@ import java.util.Optional;
 @Repository
 public interface EstadoReservaRepository extends JpaRepository<EstadoReserva, Integer> {
 	
-	List<EstadoReserva> findByNombreEstado(String nombreEstado);
+	Optional<EstadoReserva> findOneByNombreEstado(String nombreEstado);
+	
+
+	
 	
 }

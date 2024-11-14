@@ -16,7 +16,6 @@ import ar.edu.unq.grupo3.theCanchita.repository.EstadoReservaRepository;
 import ar.edu.unq.grupo3.theCanchita.repository.ReservaRepository;
 import ar.edu.unq.grupo3.theCanchita.repository.UsuarioRepository;
 
-
 @Service
 public class ReservaService {
 	@Autowired
@@ -65,15 +64,8 @@ public class ReservaService {
 	@Transactional(readOnly = true)
 	public List<Reserva> reservasPorEstado(String estado) {
 		List<Reserva> reservas = new ArrayList<Reserva>();
-			if(estado.equals("Pendiente")) {
-				 reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(estadoReservaRepository.findById(3).get());
-			}else if(estado.equals("Reservada")) {
-				reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(estadoReservaRepository.findById(1).get());
-			}else if(estado.equals("Finalizada")) {
-				reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(estadoReservaRepository.findById(2).get());
-			}else if (estado.equals("Cancelada")) {
-				reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(estadoReservaRepository.findById(4).get());
-			}
+		EstadoReserva porEstado = estadoReservaRepository.findOneByNombreEstado(estado).orElse(null);
+		reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(porEstado);
 		return reservas;
 	}
 	
@@ -84,10 +76,8 @@ public class ReservaService {
 	
 	@Transactional
 	public void actualizarEstado(String idReserva, String estadoReserva) {
-		
 		Reserva reserva = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
-		
-		EstadoReserva nuevoEstado = this.estadoReservaRepository.findByNombreEstado(estadoReserva).get(0);
+		EstadoReserva nuevoEstado = this.estadoReservaRepository.findOneByNombreEstado(estadoReserva).get();
 		reserva.setEstadoreserva(nuevoEstado);
 		
 		repository.save(reserva);
