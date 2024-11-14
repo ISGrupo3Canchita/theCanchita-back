@@ -20,10 +20,7 @@ public class UserInfoDetails implements UserDetails {
     private String id;
     private String telefono;
     private Integer cantidad_Reserva;
-    
-    
     private List<GrantedAuthority> authorities;
-    
     
     public UserInfoDetails(Usuario userInfo) {
     	this.email = userInfo.getEmail(); // Assuming 'email' is used as 'username'
