@@ -1,6 +1,7 @@
 package ar.edu.unq.grupo3.theCanchita.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,16 +28,19 @@ import ar.edu.unq.grupo3.theCanchita.service.UsuarioService;
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled= true)
 public class SecurityConfig {
-	
+
 	@Autowired
 	private JwtAuthFilter authFilter;
-	
+
+    @Value("${frontend.cors.url}")
+    private String corsUrl;
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new UsuarioService();
 	}
 
-	
+
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -54,12 +58,14 @@ public class SecurityConfig {
 
         return http.build();
     }
-	
+
 	@Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("http://localhost:5173"); 
+        for (String split : corsUrl.split(",")) {
+            configuration.addAllowedOrigin(split);
+        }
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.addExposedHeader("Authorization");

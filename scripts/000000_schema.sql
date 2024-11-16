@@ -1,9 +1,10 @@
 /*
 	##### The Canchita #####
 */
-CREATE DATABASE canchitabs;
+CREATE DATABASE IF NOT EXISTS canchitabs;
+USE canchitabs;
 
-CREATE TABLE canchitabs.usuario(
+CREATE TABLE usuario(
 	id VARCHAR(36) NOT NULL,
     nombreUsuario VARCHAR(255),
     email VARCHAR(255) UNIQUE,
@@ -12,14 +13,14 @@ CREATE TABLE canchitabs.usuario(
     contraseñaUsuario VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
     );
-CREATE TABLE canchitabs.rol(
+CREATE TABLE rol(
 	id INT  NOT null AUTO_INCREMENT ,
     nombre VARCHAR(144),
     descripcion VARCHAR(255),
     PRIMARY KEY (id)
     );
 
-CREATE TABLE canchitabs.usuariorol(
+CREATE TABLE usuariorol(
     id VARCHAR(144) NOT null ,
     idUsuario VARCHAR(36) NOT NULL,
     idRol INT NOT NULL,
@@ -28,14 +29,14 @@ CREATE TABLE canchitabs.usuariorol(
     CONSTRAINT FK_Rol FOREIGN KEY (idRol) REFERENCES rol(id)
 );
 
-CREATE TABLE canchitabs.estadoCancha(
+CREATE TABLE estadoCancha(
 	id INT NOT null AUTO_INCREMENT ,
     nombreEstado VARCHAR(144),
     descripcionEstado VARCHAR(255),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE canchitabs.cancha(
+CREATE TABLE cancha(
 	id VARCHAR(144) NOT null ,
     nombreCancha VARCHAR(255) DEFAULT ('Sin Nombre') ,
     idEstadoCancha INTEGER NOT NULL,
@@ -45,14 +46,14 @@ CREATE TABLE canchitabs.cancha(
     PRIMARY KEY (id),
     CONSTRAINT FK_Cancha FOREIGN KEY (idEstadoCancha) REFERENCES estadoCancha(id)
 );
-CREATE TABLE canchitabs.estadoReserva(
+CREATE TABLE estadoReserva(
 	id INT NOT null AUTO_INCREMENT  ,
     nombreEstado VARCHAR(144),
     descripcionEstado VARCHAR(255),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE canchitabs.reserva(
+CREATE TABLE reserva(
 		id VARCHAR(144) NOT null  ,
         idUsuario VARCHAR(36) NOT NULL,
         idCancha VARCHAR(144) NOT NULL,
@@ -70,12 +71,12 @@ insert into canchitabs.rol(id, nombre, descripcion) values ('2', 'Operador','Hab
 insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador','Habilitada la gestion de la aplicacion');
 #select * from canchitabs.rol
 
-insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 1 , 'Habilitada', 'La cancha está disponible para su uso'); 
+insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 1 , 'Habilitada', 'La cancha está disponible para su uso');
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 2 ,'Deshabilitada', 'La cancha no está disponible para su uso');
 
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 3 ,'Eliminada', 'La cancha fue eliminada del modelo');
 
-select * from canchitabs.estadocancha 
+select * from canchitabs.estadocancha
 
 
 
@@ -83,5 +84,5 @@ insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) valu
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 2 , 'Finalizada', 'La reserva en el horario dado finalizó');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 3 , 'Pendiente', 'La reserva del usuario aún no está Reservada');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 4 , 'Cancelada', 'La reserva del usuario fué cancelada por el Usuario o por el Operador');
-#	select * from canchitabs.estadoreserva 
+#	select * from canchitabs.estadoreserva
 
