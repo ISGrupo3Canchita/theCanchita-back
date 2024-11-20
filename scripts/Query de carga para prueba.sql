@@ -17,14 +17,16 @@
 #	Insert into canchitabs.usuariorol (id, idUsuario, idRol) value( 1,(select id from canchitabs.usuario cu where cu.email = "uno@mail"), 1);
 #	Insert into canchitabs.usuariorol (id, idUsuario, idRol) value( 2,(select id from canchitabs.usuario cu where cu.email = "dos@mail"), 2);
 #	Insert into canchitabs.usuariorol (id, idUsuario, idRol) value( 3,(select id from canchitabs.usuario cu where cu.email = "tres@mail"), 3);
+	Insert into canchitabs.usuariorol (id, idUsuario, idRol) value( 3,(select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 3);
+
 #	---------- Agregar Cancha ----------
 	Insert into canchitabs.cancha (id, nombreCancha, idEstadoCancha, direccion, horarioInicio, horarioCierre) value('canchauno', 'Potrero', 1, 'en Campo', "8:00:00", "21:00:00");
 	Insert into canchitabs.cancha (id, nombreCancha, idEstadoCancha, direccion, horarioInicio, horarioCierre) value('canchados', 'Cancha', 1, 'en Ciudad', "8:00:00", "21:00:00");
 	Insert into canchitabs.cancha (id, nombreCancha, idEstadoCancha, direccion, horarioInicio, horarioCierre) value('canchatres', 'Box', 1, 'por Ahi', "8:00:00", "21:00:00");
 #	---------- Agregouna Reserva
-	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservaseis', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchauno', 3, '11:00:00','12:00:00' );
-	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservasiete', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchados', 1, '8:00:00','9:00:00' );
-	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservaocho', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchatres', 3, '13:00:00','14:00:00' );
-    INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservanueve', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchauno', 2, '15:00:00','16:00:00' );
-   INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservadiez', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchados', 4, '10:00:00','11:00:00' );
+	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservauno', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchauno', 3, '11:00:00','12:00:00' );
+	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservads', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchados', 1, '8:00:00','9:00:00' );
+	INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservatres', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchatres', 3, '13:00:00','14:00:00' );
+    INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservacuatro', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchauno', 2, '15:00:00','16:00:00' );
+   INSERT INTO canchitabs.reserva (id, idUsuario, idCancha, idEstadoReserva, inicioReserva, finReserva) VALUE ('reservacinci', (select id from canchitabs.usuario cu where cu.email = "cuatro@mail"), 'canchados', 4, '10:00:00','11:00:00' );
 

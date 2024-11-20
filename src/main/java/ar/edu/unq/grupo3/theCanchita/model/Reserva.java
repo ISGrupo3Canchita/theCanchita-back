@@ -41,7 +41,7 @@ public class Reserva {
 	private Cancha cancha;
 	
 
-	@ManyToOne( cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn (name = "idEstadoReserva")
 	private EstadoReserva estadoreserva;
 	

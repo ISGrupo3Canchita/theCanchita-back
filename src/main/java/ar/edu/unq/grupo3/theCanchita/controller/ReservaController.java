@@ -75,6 +75,20 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
+	@GetMapping(path ="/email2/{email}")
+	@ResponseBody
+	public ResponseEntity<List<Reserva>> listaReservaParaUsuarioSegunEstado(@PathVariable String email){
+		
+		System.out.println("----- ACA EMPIEZA LA MAGIA -----");
+		List<Reserva> reservas = this.reservaServicio.listaReservaConEstadoPendienteOReservadaPorUsuarioEmail(email);
+		List<ReservaDto> reservasDto = new ArrayList<ReservaDto>();
+		reservas.forEach(reserva -> {
+			ReservaDto reservaDto = new ReservaDto(reserva);
+			reservasDto.add(reservaDto);
+		});
+		return ResponseEntity.ok(reservas);
+	}
+	
 	@GetMapping (path = "/cancha/{idCancha}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorCancha(@PathVariable String idCancha){
