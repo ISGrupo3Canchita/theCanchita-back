@@ -40,14 +40,15 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 		       "(:horarioFin BETWEEN r.inicioReserva AND r.finReserva) OR " +
 		       "(r.inicioReserva BETWEEN :horarioInicio AND :horarioFin) OR " +
 		       "(r.finReserva BETWEEN :horarioInicio AND :horarioFin))")
-		List<Reserva> findReservasOcupadas(@Param("cancha") Cancha cancha, 
-		                                   @Param("horarioInicio") LocalTime horarioInicio, 
-		                                   @Param("horarioFin") LocalTime horarioFin);
 
-
+	List<Reserva> findReservasOcupadas(@Param("cancha") Cancha cancha, 
+		                               @Param("horarioInicio") LocalTime horarioInicio, 
+		                               @Param("horarioFin") LocalTime horarioFin);
 	
-
-
-
+	@Query("SELECT r FROM Reserva r WHERE r.usuario = :usuario AND  r.estadoreserva IN (:estados)")
+	List<Reserva> findReservasPendienteReservadaByUsuario(@Param("usuario")Usuario usuario,
+												@Param("estados")List<EstadoReserva> estados);
 	
+	List<Reserva> findByUsuarioAndEstadoreservaIn(Usuario usuario, List<EstadoReserva> estados);
+			
 }

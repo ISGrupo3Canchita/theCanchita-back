@@ -44,14 +44,11 @@ public class UsuarioController {
 
     @PostMapping()
     public String addNewUser(@RequestBody UsuarioDto usuarioDto) { 
-    	    	
-
     	Usuario usuario = new Usuario();
     	usuario.setNombreUsuario(usuarioDto.getNombre());
     	usuario.setEmail(usuarioDto.getEmail());
     	usuario.setTelefonoUsuario(usuarioDto.getTelefono());
     	usuario.setContraseñaUsuario(usuarioDto.getContraseña());
-
     	return service.addUser(usuario);
     }
 
@@ -83,13 +80,13 @@ public class UsuarioController {
     @PostMapping("/login")
     public UsuarioDto usuarioPorEmail(@RequestBody AuthRequest authRequest) {
     	UserInfoDetails usuario =  this.service.loadUserByUsername(authRequest.getUsername());
-   
-    	 Authentication authentication = authenticationManager.authenticate(
+    	System.out.println(usuario.getId());
+    	Authentication authentication = authenticationManager.authenticate(
     	            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
     	        );
     	        if (authentication.isAuthenticated()) {
-    	
     	            String token = jwtService.generateToken(authRequest.getUsername());
+
     	            String usuarioRol = this.service.findRolById(usuario.getId());
     	            
     	            UsuarioDto usuarioDto = new UsuarioDto(usuario.getNombre(), usuario.getEmail(), usuario.getTelefono()

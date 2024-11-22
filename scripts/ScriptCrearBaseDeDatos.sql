@@ -40,8 +40,8 @@ CREATE TABLE canchitabs.cancha(
     nombreCancha VARCHAR(255) DEFAULT ('Sin Nombre') ,
     idEstadoCancha INTEGER NOT NULL,
     direccion VARCHAR (144),
-    horarioInicio VARCHAR(144) NOT NULL,
-    horarioCierre VARCHAR(144) NOT NULL,
+    horarioInicio TIME,
+    horarioCierre TIME,
     PRIMARY KEY (id),
     CONSTRAINT FK_Cancha FOREIGN KEY (idEstadoCancha) REFERENCES estadoCancha(id)
 );
@@ -72,10 +72,9 @@ insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador'
 
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 1 , 'Habilitada', 'La cancha está disponible para su uso'); 
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 2 ,'Deshabilitada', 'La cancha no está disponible para su uso');
-
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 3 ,'Eliminada', 'La cancha fue eliminada del modelo');
 
-select * from canchitabs.estadocancha 
+#select * from canchitabs.estadocancha;
 
 
 

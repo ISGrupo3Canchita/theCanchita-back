@@ -46,7 +46,7 @@ public class ReservaController {
 	return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/all/usuario/{idUsuario}")
+	@GetMapping(path ="/usuario/{idUsuario}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorUsuario(@PathVariable String idUsuario){
 		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(idUsuario);
@@ -58,12 +58,11 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
-	@GetMapping(path ="/email/{email}")
+	@GetMapping(path ="/email2/{email}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasParaUsuario(@PathVariable String email){
 		List<Reserva> reservas =this.reservaServicio.reservasPoridUsuario(email);
 		List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
-		
 		List<Reserva>reservasFiltradas = reservas.stream()
 										.filter(reserva -> (reserva.getEstadoreserva().getNombreEstado().equals("Pendiente") ) || (reserva.getEstadoreserva().getNombreEstado().equals("Reservada") ))
 										.toList();
@@ -73,6 +72,19 @@ public class ReservaController {
 			reservasDtos.add(reservaDto);
 		});
 		return ResponseEntity.ok(reservasDtos);
+	}
+	
+	@GetMapping(path ="/email/{email}")
+	@ResponseBody
+	public ResponseEntity<List<ReservaDto>> listaReservaParaUsuarioSegunEstado(@PathVariable String email){
+		
+		List<Reserva> reservas = this.reservaServicio.listaReservaConEstadoPendienteOReservadaPorUsuarioEmail(email);
+		List<ReservaDto> reservasDto = new ArrayList<ReservaDto>();
+		reservas.forEach(reserva -> {
+			ReservaDto reservaDto = new ReservaDto(reserva);
+			reservasDto.add(reservaDto);
+		});
+		return ResponseEntity.ok(reservasDto);
 	}
 	
 	@GetMapping (path = "/cancha/{idCancha}")
@@ -88,8 +100,9 @@ public class ReservaController {
 	}
 	@GetMapping (path = "/estado/{estado}")
 	@ResponseBody
-	public ResponseEntity<List<ReservaDto>> reservasPorEstado(@PathVariable String estadoReserva){
-		List<Reserva> reservas =this.reservaServicio.reservasPorEstado(estadoReserva);
+	public ResponseEntity<List<ReservaDto>> reservasPorEstado(@PathVariable String estado){
+		System.out.println(estado);
+		List<Reserva> reservas =this.reservaServicio.reservasPorEstado(estado);
 		List<ReservaDto> reservasDtos = new ArrayList<ReservaDto>();
 		reservas.forEach(reserva -> {
 			ReservaDto reservaDto = new ReservaDto(reserva);

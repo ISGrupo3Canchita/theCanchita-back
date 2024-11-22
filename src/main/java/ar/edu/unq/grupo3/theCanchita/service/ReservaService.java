@@ -20,7 +20,7 @@ import ar.edu.unq.grupo3.theCanchita.repository.UsuarioRepository;
 @Service
 public class ReservaService {
 	@Autowired
-	private ReservaRepository repository;
+	private ReservaRepository reservaRepository;
 	@Autowired
 	private EstadoReservaRepository estadoReservaRepository;
 	@Autowired
@@ -67,26 +67,27 @@ public class ReservaService {
 		reserva.setUsuario(usuario);
 		reserva.setInicioReserva(nuevaReserva.getInicioReserva());
 		reserva.setFinReserva(nuevaReserva.getFinReserva());
-		this.repository.save(reserva);
+		this.reservaRepository.save(reserva);
 		return "Reserva Guardada";
 	}
 	}
 	
 	@Transactional(readOnly = true)
 	public List<Reserva> todasLasReservas(){
-		return this.repository.findAll();
+		return this.reservaRepository.findAll();
 	}
 	
 	@Transactional(readOnly = true)
 	public List<Reserva> reservasPoridUsuario(String idemail) {
 		
-		List<Reserva> reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByUsuario(usuarioRepository.findByEmail(idemail).get());
+		List<Reserva> reservas = this.reservaRepository.findWithUsuarioAndCanchaAndEstadoByUsuario(usuarioRepository.findByEmail(idemail).get());
 		return reservas;
 	}
 	
+	
 	@Transactional(readOnly = true)
 	public List<Reserva> reservasPorIdCancha(String idCancha) {
-		List<Reserva> reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByCancha(canchaRepository.findById(idCancha).get());
+		List<Reserva> reservas = this.reservaRepository.findWithUsuarioAndCanchaAndEstadoByCancha(canchaRepository.findById(idCancha).get());
 		return reservas;
 	}
 	
@@ -94,17 +95,18 @@ public class ReservaService {
 	public List<Reserva> reservasPorEstado(String estado) {
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		EstadoReserva porEstado = estadoReservaRepository.findOneByNombreEstado(estado).orElse(null);
-		reservas = this.repository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(porEstado);
+		reservas = this.reservaRepository.findWithUsuarioAndCanchaAndEstadoByEstadoreserva(porEstado);
 		return reservas;
 	}
 	
 	@Transactional(readOnly = true)
 	public Reserva reservaPorId(String id) {
-		return repository.findWithUsuarioAndCanchaAndEstadoById(id).get();
+		return reservaRepository.findWithUsuarioAndCanchaAndEstadoById(id).get();
 	}
 	
 	@Transactional(readOnly = false)
 	public void actualizarEstado(String idReserva, String estadoReserva) {
+
 		Reserva reserva = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
 		
 		if(estadoReserva.equals("Finalizada") || (estadoReserva.equals("Cancelada"))) {
@@ -118,8 +120,22 @@ public class ReservaService {
 		reserva.setEstadoreserva(nuevoEstado);
 		
 		repository.save(reserva);
+	}
+	
+	@Transactional(readOnly= true)
+	public List<Reserva> listaReservaConEstadoPendienteOReservadaPorUsuarioEmail(String email){
+		Usuario usuario = this.usuarioRepository.findWithRolesByEmail(email);
 		
-		
+		System.out.println(usuario.getUsuariorol());
+	
+		EstadoReserva estadoUno = this.estadoReservaRepository.findOneByNombreEstado("Pendiente").get();
+		EstadoReserva estadoDos = this.estadoReservaRepository.findOneByNombreEstado("Reservada").get();
+		List<EstadoReserva> estados = new ArrayList<EstadoReserva>();
+		estados.add(estadoUno);
+		estados.add(estadoDos);
+		List<Reserva> reservas = this.reservaRepository.findReservasPendienteReservadaByUsuario(usuario,estados);
+//		List<Reserva> reservas = this.reservaRepository.findByUsuarioAndEstadoreservaIn(usuario, estados);
+		return reservas;
 	}
 }
  
