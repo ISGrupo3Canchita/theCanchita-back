@@ -27,25 +27,40 @@ public class ReservaService {
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private CanchaRepository canchaRepository;
-
+	
+    @Transactional(readOnly = false)
 	public String agregarReserva(ReservaDto nuevaReserva) {
 		LocalTime inicio = nuevaReserva.getInicioReserva();
 	    LocalTime fin = nuevaReserva.getFinReserva();
 	    Cancha canchaComprobacion = canchaRepository.findById(nuevaReserva.getIdCancha()).get();
+	    Usuario usuario = (usuarioRepository.findById(nuevaReserva.getIdUsuario())).get();
+	    
+	    System.out.println(usuario.getCantidadReserva() + "CANTIDAD RESERVA ANTES DE RESERVAR");
 
-	    List<Reserva> reservasOcupadas = repository.findReservasOcupadas(canchaComprobacion, inicio, fin);
-	    if (!reservasOcupadas.isEmpty()) {
-	       return ("El horario ya está reservado.");
+	    //List<Reserva> reservasOcupadas = repository.findReservasOcupadas(canchaComprobacion, inicio, fin);
+	    
+	    if(usuario.getCantidadReserva() >= 3) {
+	    	return ( "Ya has sobrepasado el limite de reservas");
 	    }
 	    
+	    else if(this.canchaRepository.findCanchaHorario(canchaComprobacion.getId(), inicio, fin).isEmpty()){
+	    	return "El horario es Invalido";
+	    }
+	    
+	    else if (!repository.findReservasOcupadas(canchaComprobacion, inicio, fin).isEmpty()) {
+	 	       return ("El horario ya está reservado.");
+	    }
+		
 	    else {
 		
-		
-		String uuid = UUID.randomUUID().toString();
+	    usuario.setCantidadReserva(usuario.getCantidadReserva() + 1);
+	    System.out.println(usuario.getCantidadReserva() + "CANTIDAD RESERVA DESPUES DE RESERVAR");
+	    this.usuarioRepository.save(usuario);
+	    String uuid = UUID.randomUUID().toString();
 		EstadoReserva estadoReserva = estadoReservaRepository.findById(3).get();
-		Usuario usuario = (usuarioRepository.findById(nuevaReserva.getIdUsuario())).get();
 		Cancha cancha = (canchaRepository.findById(nuevaReserva.getIdCancha())).get();
 		Reserva reserva= new Reserva();
+		
 		reserva.setId(uuid);
 		reserva.setEstadoreserva(estadoReserva);
 		reserva.setCancha(cancha);
@@ -88,13 +103,23 @@ public class ReservaService {
 		return repository.findWithUsuarioAndCanchaAndEstadoById(id).get();
 	}
 	
-	@Transactional
+	@Transactional(readOnly = false)
 	public void actualizarEstado(String idReserva, String estadoReserva) {
 		Reserva reserva = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
+		
+		if(estadoReserva.equals("Finalizada") || (estadoReserva.equals("Cancelada"))) {
+			Usuario usuario = reserva.getUsuario();
+			usuario.setCantidadReserva(usuario.getCantidadReserva() - 1);
+			this.usuarioRepository.save(usuario);
+		}
+		
+		
 		EstadoReserva nuevoEstado = this.estadoReservaRepository.findOneByNombreEstado(estadoReserva).get();
 		reserva.setEstadoreserva(nuevoEstado);
 		
 		repository.save(reserva);
+		
+		
 	}
 }
  

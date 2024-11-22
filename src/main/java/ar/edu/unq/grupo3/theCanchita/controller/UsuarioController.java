@@ -91,8 +91,9 @@ public class UsuarioController {
     	
     	            String token = jwtService.generateToken(authRequest.getUsername());
     	            String usuarioRol = this.service.findRolById(usuario.getId());
+    	            
     	            UsuarioDto usuarioDto = new UsuarioDto(usuario.getNombre(), usuario.getEmail(), usuario.getTelefono()
-    	            		, usuario.getCantidad_Reserva(), null, null, usuarioRol, token);
+    	            		, usuario.getCantidad_Reserva(), null,  usuario.getId(), usuarioRol, token);
     	            return usuarioDto;
     	            
     	        } else {

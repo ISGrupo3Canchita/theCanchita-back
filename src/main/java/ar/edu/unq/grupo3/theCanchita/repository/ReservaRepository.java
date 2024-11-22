@@ -32,14 +32,17 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado")
 	public Optional<Reserva> findWithUsuarioAndCanchaAndEstadoById(String Id);
 	
-	@Query("SELECT r FROM Reserva r WHERE r.cancha = :cancha AND " +
+	@Query("SELECT r FROM Reserva r " +
+		       "JOIN r.estadoreserva e " +  
+		       "WHERE r.cancha = :cancha AND " +
+		       "(e.nombreEstado = 'PENDIENTE' OR e.nombreEstado = 'RESERVADA') AND " +  
 		       "((:horarioInicio BETWEEN r.inicioReserva AND r.finReserva) OR " +
 		       "(:horarioFin BETWEEN r.inicioReserva AND r.finReserva) OR " +
 		       "(r.inicioReserva BETWEEN :horarioInicio AND :horarioFin) OR " +
 		       "(r.finReserva BETWEEN :horarioInicio AND :horarioFin))")
 		List<Reserva> findReservasOcupadas(@Param("cancha") Cancha cancha, 
-		                                           @Param("horarioInicio") LocalTime horarioInicio, 
-		                                           @Param("horarioFin") LocalTime horarioFin);
+		                                   @Param("horarioInicio") LocalTime horarioInicio, 
+		                                   @Param("horarioFin") LocalTime horarioFin);
 
 
 	
