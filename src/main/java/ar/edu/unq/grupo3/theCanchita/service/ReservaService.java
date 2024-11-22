@@ -47,7 +47,7 @@ public class ReservaService {
 	    	return "El horario es Invalido";
 	    }
 	    
-	    else if (!repository.findReservasOcupadas(canchaComprobacion, inicio, fin).isEmpty()) {
+	    else if (!reservaRepository.findReservasOcupadas(canchaComprobacion, inicio, fin).isEmpty()) {
 	 	       return ("El horario ya está reservado.");
 	    }
 		
@@ -107,7 +107,7 @@ public class ReservaService {
 	@Transactional(readOnly = false)
 	public void actualizarEstado(String idReserva, String estadoReserva) {
 
-		Reserva reserva = this.repository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
+		Reserva reserva = this.reservaRepository.findWithUsuarioAndCanchaAndEstadoById(idReserva).get();
 		
 		if(estadoReserva.equals("Finalizada") || (estadoReserva.equals("Cancelada"))) {
 			Usuario usuario = reserva.getUsuario();
@@ -119,7 +119,7 @@ public class ReservaService {
 		EstadoReserva nuevoEstado = this.estadoReservaRepository.findOneByNombreEstado(estadoReserva).get();
 		reserva.setEstadoreserva(nuevoEstado);
 		
-		repository.save(reserva);
+		reservaRepository.save(reserva);
 	}
 	
 	@Transactional(readOnly= true)
