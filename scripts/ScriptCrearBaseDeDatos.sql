@@ -1,7 +1,6 @@
 /*
 	##### The Canchita #####
 */
-
 CREATE DATABASE canchitabs;
 
 CREATE TABLE canchitabs.usuario(
@@ -41,8 +40,8 @@ CREATE TABLE canchitabs.cancha(
     nombreCancha VARCHAR(255) DEFAULT ('Sin Nombre') ,
     idEstadoCancha INTEGER NOT NULL,
     direccion VARCHAR (144),
-    horarioInicio VARCHAR(144) NOT NULL,
-    horarioCierre VARCHAR(144) NOT NULL,
+    horarioInicio TIME,
+    horarioCierre TIME,
     PRIMARY KEY (id),
     CONSTRAINT FK_Cancha FOREIGN KEY (idEstadoCancha) REFERENCES estadoCancha(id)
 );

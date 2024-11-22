@@ -24,8 +24,8 @@ public class UsuarioDto implements Serializable{
 	
 
 	
-	public UsuarioDto(String nombre, String email, String telefono, Integer cantidadReserva,
-			String contraseña, String id, String rol, String token) {
+	public UsuarioDto(String nombre, String email, String telefono, Integer cantidadReserva,String contraseña, 
+					  String id, String rol, String token) {
 		this.nombre = nombre;
 		this.cantidadReserva = cantidadReserva;
 		this.rol = rol;

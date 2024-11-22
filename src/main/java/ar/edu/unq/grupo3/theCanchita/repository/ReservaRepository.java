@@ -41,13 +41,12 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 		                               @Param("horarioInicio") LocalTime horarioInicio, 
 		                               @Param("horarioFin") LocalTime horarioFin);
 	
+	@Query("SELECT r FROM Reserva r WHERE r.usuario = :usuario AND  r.estadoreserva IN (:estados)")
+	List<Reserva> findReservasPendienteReservadaByUsuario(@Param("usuario")Usuario usuario,
+												@Param("estados")List<EstadoReserva> estados);
 	
-	
-	
-	@Query("SELECT r FROM Reserva r WHERE r.usuario = :usuario AND ( r.estadoreserva IN (:estadoUno, :estadoDos))")
-	List<Reserva> findReservasPendienteReservada(@Param("usuario")Usuario usuario,
-										@Param("estadoUno")EstadoReserva estadoUno,
-										@Param("estadoDos")EstadoReserva estadoDos);
+	List<Reserva> findByUsuarioAndEstadoreservaIn(Usuario usuario, List<EstadoReserva> estados);
+			
 
 
 	
