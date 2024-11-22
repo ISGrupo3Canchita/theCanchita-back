@@ -86,17 +86,11 @@ public class UsuarioController {
     	        );
     	        if (authentication.isAuthenticated()) {
     	            String token = jwtService.generateToken(authRequest.getUsername());
+
+    	            String usuarioRol = this.service.findRolById(usuario.getId());
     	            
-    	            String usuarioIdRol = this.service.findRolById(usuario.getId());
-    	            
-    	            UsuarioDto usuarioDto = new UsuarioDto(
-    	            										usuario.getNombre(), 
-    	            										usuario.getEmail(), 
-    	            										usuario.getTelefono(), 
-    	            										usuario.getCantidad_Reserva(), 
-    	            										null,
-    	            										usuario.getId(),    	            										usuarioIdRol, 
-    	            										token);
+    	            UsuarioDto usuarioDto = new UsuarioDto(usuario.getNombre(), usuario.getEmail(), usuario.getTelefono()
+    	            		, usuario.getCantidad_Reserva(), null,  usuario.getId(), usuarioRol, token);
     	            return usuarioDto;
     	            
     	        } else {

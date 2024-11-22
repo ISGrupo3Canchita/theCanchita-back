@@ -26,6 +26,7 @@ public class CanchaController {
 	
 	@PostMapping()
 	public String postCancha(@RequestBody CanchaDto canchaDto) {  
+		System.out.println(canchaDto.getNombreCancha());
 		Cancha cancha = new Cancha();	
 		cancha.setNombreCancha(canchaDto.getNombreCancha());
 		cancha.setDireccion(canchaDto.getDireccion());
