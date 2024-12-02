@@ -21,8 +21,18 @@ public class CanchaService {
 		
 
 	@Transactional(readOnly = true)
-	public EstadoCancha obtenerEstadoCancha(Integer idEstado) {
-		return this.estadoCanchaRepository.findById(idEstado).get();
+	public EstadoCancha obtenerEstadoCancha(String estado) {
+		if(estado.equals("Habilitada")){
+			return this.estadoCanchaRepository.findById(1).get();
+		}
+		else if (estado.equals("Deshabilitada")) {
+			return this.estadoCanchaRepository.findById(2).get();
+
+		}
+		else {
+			return this.estadoCanchaRepository.findById(3).get();
+
+		}
 	}
 	
 

@@ -32,8 +32,8 @@ public class CanchaController {
 		cancha.setDireccion(canchaDto.getDireccion());
 		cancha.setHorarioInicio(canchaDto.getHorarioInicio());
 		cancha.setHorarioFin(canchaDto.getHorarioFin());
-		
-		EstadoCancha estado = this.canchaService.obtenerEstadoCancha(1);
+		EstadoCancha estado = this.canchaService.obtenerEstadoCancha(canchaDto.getEstado());
+		//EstadoCancha estado = this.canchaService.obtenerEstadoCancha(1);
 		
 		cancha.setEstadoCancha(estado);
 		
@@ -46,7 +46,7 @@ public class CanchaController {
 		
 		List<CanchaDto> canchasDto = new ArrayList<CanchaDto>();
 		
-		String estado = this.canchaService.obtenerEstadoCancha(1).getNombreEstado();
+		String estado = this.canchaService.obtenerEstadoCancha("Habilitada").getNombreEstado();
 		
 		canchasHab.forEach(cancha -> {
 			CanchaDto canchaDto = new CanchaDto(cancha.getId(), cancha.getNombreCancha(), cancha.getDireccion(),
@@ -57,6 +57,7 @@ public class CanchaController {
 		return canchasDto;
 		
 	}
+
 	
 	@PutMapping("/{id}/estado/{estado}")
 	public String actualizarEstadoCancha(@PathVariable String id, @PathVariable String estado) {
