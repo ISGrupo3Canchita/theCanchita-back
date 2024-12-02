@@ -49,6 +49,13 @@ public interface ReservaRepository extends JpaRepository<Reserva, String> {
 	List<Reserva> findReservasPendienteReservadaByUsuario(@Param("usuario")Usuario usuario,
 												@Param("estados")List<EstadoReserva> estados);
 	
-	List<Reserva> findByUsuarioAndEstadoreservaIn(Usuario usuario, List<EstadoReserva> estados);
+//	List<Reserva> findByUsuarioAndEstadoreservaIn(Usuario usuario, List<EstadoReserva> estados);
+	
+	List<Reserva> findByEstadoreservaIn(List<EstadoReserva> estados);
+	
+	List<Reserva> findByEstadoreserva(EstadoReserva estadoreserva);
+	
+	@EntityGraph(value = "ReservaWithUsuarioAndCanchaAndEstado")
+	public List<Reserva> findWithUsuarioAndCanchaAndEstadoByEstadoreservaIn(List<EstadoReserva> estados);
 			
 }

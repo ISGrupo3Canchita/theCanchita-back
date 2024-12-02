@@ -16,6 +16,7 @@ public class ReservaDto implements Serializable {
 	
 	private String id;
 	private String idUsuario;
+	private String nombreUsuario;
 	private String idCancha;
 	private String nombreCancha;
 	private String estadoreserva;
@@ -26,18 +27,16 @@ public class ReservaDto implements Serializable {
 	public ReservaDto(Reserva reserva) {
 		this.id = reserva.getId();
 		this.idUsuario = reserva.getUsuario().getId();
+		this.nombreUsuario = reserva.getUsuario().getNombreUsuario();
 		this.idCancha = reserva.getCancha().getId();
 		this.nombreCancha = reserva.getCancha().getNombreCancha();
 		this.estadoreserva = reserva.getEstadoreserva().getNombreEstado();
 		this.inicioReserva = reserva.getInicioReserva();
 		this.finReserva = reserva.getFinReserva();	
 	}
-	
 	public ReservaDto() {}
-
 //	-----------------------Setter and Getter
-	
-	
+
 	public String getId() {
 		return id;
 	}
@@ -81,6 +80,13 @@ public class ReservaDto implements Serializable {
 	}
 	public void setFinReserva(LocalTime finReserva) {
 		this.finReserva = finReserva;
+	}
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 }

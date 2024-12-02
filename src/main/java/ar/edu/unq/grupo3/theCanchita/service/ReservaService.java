@@ -125,9 +125,6 @@ public class ReservaService {
 	@Transactional(readOnly= true)
 	public List<Reserva> listaReservaConEstadoPendienteOReservadaPorUsuarioEmail(String email){
 		Usuario usuario = this.usuarioRepository.findWithRolesByEmail(email);
-		
-		System.out.println(usuario.getUsuariorol());
-	
 		EstadoReserva estadoUno = this.estadoReservaRepository.findOneByNombreEstado("Pendiente").get();
 		EstadoReserva estadoDos = this.estadoReservaRepository.findOneByNombreEstado("Reservada").get();
 		List<EstadoReserva> estados = new ArrayList<EstadoReserva>();
@@ -136,6 +133,22 @@ public class ReservaService {
 		List<Reserva> reservas = this.reservaRepository.findReservasPendienteReservadaByUsuario(usuario,estados);
 //		List<Reserva> reservas = this.reservaRepository.findByUsuarioAndEstadoreservaIn(usuario, estados);
 		return reservas;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<ReservaDto> todasReservasEnPendienteYReservada(){
+		EstadoReserva estadoUno = this.estadoReservaRepository.findOneByNombreEstado("Pendiente").get();
+		EstadoReserva estadoDos = this.estadoReservaRepository.findOneByNombreEstado("Reservada").get();
+		List<EstadoReserva> estados = new ArrayList<EstadoReserva>();
+		estados.add(estadoUno);
+		estados.add(estadoDos);
+		List<ReservaDto> reservasDto = new ArrayList<ReservaDto>();
+		List<Reserva> reservas = this.reservaRepository.findByEstadoreservaIn(estados);
+		reservas.forEach(reserva -> {
+			ReservaDto reservaDto = new ReservaDto(reserva);
+			reservasDto.add(reservaDto);
+		});
+		return reservasDto;
 	}
 }
  
