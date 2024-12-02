@@ -65,6 +65,7 @@ CREATE TABLE canchitabs.reserva(
         PRIMARY KEY (id)
     );
 
+insert into canchita.rol(id, nombre, descripcion) VALUES ('4','Eliminado', 'Deshabilitada la interacción con la Aplicación');
 INSERT INTO canchitabs.rol (id, nombre, descripcion) VALUES ('3','Usuario', 'Habilitado a reservar canchas');
 insert into canchitabs.rol(id, nombre, descripcion) values ('2', 'Operador','Habilitada la opcion de aceptar o rechazar una reserva');
 insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador','Habilitada la gestion de la aplicacion');
