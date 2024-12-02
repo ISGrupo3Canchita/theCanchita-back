@@ -73,14 +73,10 @@ insert into canchitabs.rol(id, nombre ,descripcion) values ('1', 'Administrador'
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 1 , 'Habilitada', 'La cancha está disponible para su uso'); 
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 2 ,'Deshabilitada', 'La cancha no está disponible para su uso');
 insert into canchitabs.estadocancha (id, nombreEstado, descripcionEstado) values ( 3 ,'Eliminada', 'La cancha fue eliminada del modelo');
-
 #select * from canchitabs.estadocancha;
-
-
 
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 1 , 'Reservada', 'El usuario reservó la cancha en el horario dado');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 2 , 'Finalizada', 'La reserva en el horario dado finalizó');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 3 , 'Pendiente', 'La reserva del usuario aún no está Reservada');
 insert into canchitabs.estadoreserva (id , nombreEstado, descripcionEstado) values ( 4 , 'Cancelada', 'La reserva del usuario fué cancelada por el Usuario o por el Operador');
 #	select * from canchitabs.estadoreserva 
-

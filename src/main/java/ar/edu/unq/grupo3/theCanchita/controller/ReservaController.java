@@ -98,6 +98,7 @@ public class ReservaController {
 		});
 		return ResponseEntity.ok(reservasDtos);
 	}
+	
 	@GetMapping (path = "/estado/{estado}")
 	@ResponseBody
 	public ResponseEntity<List<ReservaDto>> reservasPorEstado(@PathVariable String estado){
@@ -111,6 +112,13 @@ public class ReservaController {
 		return ResponseEntity.ok(reservasDtos);
 	}
 	
+	@GetMapping (path = "/pendienteandreservada")
+	@ResponseBody
+	public ResponseEntity<List<ReservaDto>> reservasPendienteReservada(){
+		List<ReservaDto> reservas =this.reservaServicio.todasReservasEnPendienteYReservada();
+	
+		return ResponseEntity.ok(reservas);
+	}
 	@PutMapping("/{idReserva}/estado/{nuevoEstado}")
 	public String  cambioEstadoReservaPut( @PathVariable String idReserva,@PathVariable String nuevoEstado ) {
 		this.reservaServicio.actualizarEstado(idReserva,nuevoEstado);
